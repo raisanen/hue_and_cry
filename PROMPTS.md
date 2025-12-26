@@ -601,7 +601,7 @@ Create widgets:
 
 ---
 
-## Prompt 15: Notebook Screen
+## Prompt 15: Notebook Screen -- DONE
 
 ```
 Create the notebook screen in lib/screens/notebook_screen.dart:

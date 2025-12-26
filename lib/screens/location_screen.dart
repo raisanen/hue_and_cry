@@ -73,6 +73,7 @@ class _LocationScreenState extends ConsumerState<LocationScreen>
     });
 
     _feedbackController.forward().then((_) {
+      if (!mounted) return;
       _feedbackController.reverse().then((_) {
         if (mounted) {
           setState(() {

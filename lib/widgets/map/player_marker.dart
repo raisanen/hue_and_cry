@@ -39,6 +39,7 @@ class _PlayerMarkerState extends State<PlayerMarker>
 
   @override
   void dispose() {
+    _pulseController.stop();
     _pulseController.dispose();
     super.dispose();
   }

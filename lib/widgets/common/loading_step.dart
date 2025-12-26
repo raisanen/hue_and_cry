@@ -210,7 +210,7 @@ class _AnimatedEllipsisTextState extends State<_AnimatedEllipsisText>
       vsync: this,
       duration: const Duration(milliseconds: 500),
     )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
+        if (status == AnimationStatus.completed && mounted) {
           setState(() {
             _dotCount = (_dotCount % 3) + 1;
           });
@@ -222,6 +222,7 @@ class _AnimatedEllipsisTextState extends State<_AnimatedEllipsisText>
 
   @override
   void dispose() {
+    _controller.stop();
     _controller.dispose();
     super.dispose();
   }
