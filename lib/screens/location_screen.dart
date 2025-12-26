@@ -111,6 +111,20 @@ class _LocationScreenState extends ConsumerState<LocationScreen>
         playerPos != null ? haversineDistance(playerPos, locationPos) : null;
     final isInRange = distance != null && distance <= visitRadiusMeters;
 
+    // Mark location as visited if in range
+    if (isInRange && !gameState.visitedLocations.contains(widget.locationId)) {
+      // Use addPostFrameCallback to avoid modifying state during build
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && playerPos != null) {
+          ref.read(activeGameStateProvider.notifier).visitLocation(
+                widget.locationId,
+                playerPos,
+                boundCase,
+              );
+        }
+      });
+    }
+
     // Get available clues and characters at this location
     final availableClues = gameService.getAvailableClues(
       gameState,
