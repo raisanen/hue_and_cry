@@ -40,7 +40,7 @@ class GazetteTheme {
         centerTitle: true,
         titleTextStyle: GazetteTypography.headline.copyWith(
           color: GazetteColors.darkText,
-          fontSize: 20,
+          fontSize: 27,
         ),
       ),
       
@@ -147,7 +147,7 @@ class GazetteTheme {
         centerTitle: true,
         titleTextStyle: GazetteTypography.headline.copyWith(
           color: GazetteColors.paperWhite,
-          fontSize: 20,
+          fontSize: 27,
         ),
       ),
       

@@ -323,7 +323,7 @@ class HomeScreen extends ConsumerWidget {
 
         // Copyright / Attribution
         Text(
-          '— Est. MDCCCXLV —',
+          '— Est. MMXV —',
           style: GoogleFonts.oldStandardTt(
             fontSize: 10,
             letterSpacing: 2.0,
