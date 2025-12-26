@@ -61,13 +61,14 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
   // Demo mode for web testing
   bool _isDemoMode = false;
 
-  // Fixed demo location (Central London for testing)
-  static const _demoLocation = LatLng(51.5074, -0.1278);
+  // Fixed demo location (Central Örebro for testing)
+  static const _demoLocation = LatLng(59.275848, 15.2166516);
 
   @override
   void initState() {
     super.initState();
-    _startSetup();
+    // Defer setup to avoid modifying providers during widget tree build
+    Future.microtask(_startSetup);
   }
 
   CaseTemplate get _caseTemplate {
@@ -332,11 +333,16 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
   void _proceedToInvestigation() {
     if (_boundCase == null) return;
 
-    // Initialize game state
-    ref.read(activeGameStateProvider.notifier).startCase(_boundCase!);
+    // Use Future.microtask to avoid modifying provider during widget tree build
+    Future.microtask(() {
+      // Initialize game state
+      ref.read(activeGameStateProvider.notifier).startCase(_boundCase!);
 
-    // Navigate to map screen
-    context.go('/case/${widget.caseId}/play');
+      // Navigate to map screen
+      if (mounted) {
+        context.go('/case/${widget.caseId}/play');
+      }
+    });
   }
 
   @override
