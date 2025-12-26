@@ -179,7 +179,7 @@ Write comprehensive unit tests covering:
 
 ---
 
-## Prompt 6: Binding Service
+## Prompt 6: Binding Service -- DONE
 
 ```
 Create the case binding service in lib/services/binding_service.dart:
@@ -422,7 +422,7 @@ Verify navigation works and theme is applied consistently.
 Create the home screen in lib/screens/home_screen.dart with Police Gazette styling:
 
 1. Masthead header:
-   - "HUE & CRY" in large Playfair Display, possibly with decorative elements
+   - "HUE & CRY" in large Playfair Display, preferably with decorative elements
    - Subtitle: "Being a Chronicle of Mystery & Crime" in italic
    - Decorative horizontal rules above and below
    - Consider a simple woodcut-style logo/icon
