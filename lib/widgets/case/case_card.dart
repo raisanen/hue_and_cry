@@ -46,8 +46,8 @@ class CaseCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Top ornamental line
-            _buildOrnamentalRule(isDark),
-            const SizedBox(height: 16),
+            // _buildOrnamentalRule(isDark),
+            // const SizedBox(height: 16),
 
             // "SPECIAL REPORT" or similar label
             Center(
