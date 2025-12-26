@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../models/case_template.dart';
 import '../providers/case_provider.dart';
 import '../providers/theme_provider.dart';
 import '../theme/gazette_colors.dart';
+import '../theme/gazette_typography.dart';
 import '../widgets/case/case_card.dart';
 import '../widgets/case/case_detail_sheet.dart';
 import '../widgets/common/gazette_divider.dart';
@@ -95,6 +95,9 @@ class HomeScreen extends ConsumerWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accentColor =
         isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed;
+    final mastheadStyle = isDark ? GazetteTypography.mastheadDark : GazetteTypography.masthead;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final subheadlineStyle = isDark ? GazetteTypography.subheadlineDark : GazetteTypography.subheadline;
 
     return Column(
       children: [
@@ -108,22 +111,17 @@ class HomeScreen extends ConsumerWidget {
           children: [
             Text(
               '❧',
-              style: TextStyle(fontSize: 24, color: accentColor),
+              style: subheadlineStyle.copyWith(color: accentColor),
             ),
             const SizedBox(width: 12),
             Text(
               'HUE & CRY',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 36,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 4.0,
-                color: textColor,
-              ),
+              style: mastheadStyle.copyWith(letterSpacing: 4.0),
             ),
             const SizedBox(width: 12),
             Text(
               '❧',
-              style: TextStyle(fontSize: 24, color: accentColor),
+              style: subheadlineStyle.copyWith(color: accentColor),
             ),
           ],
         ),
@@ -142,7 +140,7 @@ class HomeScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 '✦',
-                style: TextStyle(fontSize: 8, color: subtitleColor),
+                style: captionStyle.copyWith(fontSize: 8),
               ),
             ),
             Container(
@@ -157,25 +155,17 @@ class HomeScreen extends ConsumerWidget {
         // Subtitle
         Text(
           'BEING A CHRONICLE OF',
-          style: GoogleFonts.oldStandardTt(
-            fontSize: 10,
-            letterSpacing: 3.0,
-            color: subtitleColor,
-          ),
+          style: captionStyle.copyWith(letterSpacing: 3.0),
         ),
         Text(
           'MYSTERY & CRIME',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 4.0,
+          style: subheadlineStyle.copyWith(
             color: accentColor,
+            letterSpacing: 4.0,
+            fontStyle: FontStyle.normal,
           ),
         ),
         const SizedBox(height: 16),
-
-        // Bottom decorative border
-        _buildMastheadBorder(subtitleColor),
       ],
     );
   }
@@ -183,7 +173,7 @@ class HomeScreen extends ConsumerWidget {
   Widget _buildMastheadBorder(Color color) {
     return Row(
       children: [
-        Text('╔', style: TextStyle(color: color, fontSize: 14)),
+        Text('╔', style: GazetteTypography.caption.copyWith(color: color)),
         Expanded(
           child: Container(
             height: 2,
@@ -196,7 +186,7 @@ class HomeScreen extends ConsumerWidget {
             ),
           ),
         ),
-        Text('╗', style: TextStyle(color: color, fontSize: 14)),
+        Text('╗', style: GazetteTypography.caption.copyWith(color: color)),
       ],
     );
   }
@@ -206,26 +196,24 @@ class HomeScreen extends ConsumerWidget {
     Color textColor,
     Color subtitleColor,
   ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final subheadlineStyle = isDark ? GazetteTypography.subheadlineDark : GazetteTypography.subheadline;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+
     return Column(
       children: [
         // Section title
         Text(
           'LATEST INVESTIGATIONS',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
+          style: subheadlineStyle.copyWith(
             letterSpacing: 2.0,
-            color: textColor,
+            fontStyle: FontStyle.normal,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           'Cases Requiring the Attention of Discerning Investigators',
-          style: GoogleFonts.oldStandardTt(
-            fontSize: 12,
-            fontStyle: FontStyle.italic,
-            color: subtitleColor,
-          ),
+          style: captionStyle,
           textAlign: TextAlign.center,
         ),
       ],
@@ -274,6 +262,10 @@ class HomeScreen extends ConsumerWidget {
     Color textColor,
     Color subtitleColor,
   ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final subheadlineStyle = isDark ? GazetteTypography.subheadlineDark : GazetteTypography.subheadline;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+
     return Column(
       children: [
         const GazetteDivider.ends(),
@@ -289,22 +281,16 @@ class HomeScreen extends ConsumerWidget {
             children: [
               Text(
                 'ADDITIONAL CASES',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                style: subheadlineStyle.copyWith(
                   letterSpacing: 1.5,
-                  color: textColor,
+                  fontStyle: FontStyle.normal,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 'Further investigations are currently under preparation '
                 'by our editorial staff and shall be published in due course.',
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 11,
-                  fontStyle: FontStyle.italic,
-                  color: subtitleColor,
-                ),
+                style: captionStyle,
                 textAlign: TextAlign.center,
               ),
             ],
@@ -315,11 +301,7 @@ class HomeScreen extends ConsumerWidget {
         // Copyright / Attribution
         Text(
           '— Est. MMXV —',
-          style: GoogleFonts.oldStandardTt(
-            fontSize: 10,
-            letterSpacing: 2.0,
-            color: subtitleColor,
-          ),
+          style: captionStyle.copyWith(letterSpacing: 2.0),
         ),
       ],
     );

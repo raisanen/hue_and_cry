@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/gazette_typography.dart';
 
 import '../models/bound_case.dart';
 import '../models/character.dart';
@@ -92,12 +92,15 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
 
   void _showConfirmationDialog(BoundCase boundCase) {
     final character = boundCase.template.characters
-        .firstWhere((c) => c.id == _selectedSuspect);
+      .firstWhere((c) => c.id == _selectedSuspect);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? GazetteColors.darkCard : GazetteColors.parchment;
     final textColor = isDark ? GazetteColors.darkText : GazetteColors.inkBlack;
     final accentColor =
-        isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed;
+      isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed;
+    final headlineStyle = isDark ? GazetteTypography.headlineDark : GazetteTypography.headline;
+    final bodyStyle = isDark ? GazetteTypography.bodyDark : GazetteTypography.body;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
 
     showDialog(
       context: context,
@@ -110,13 +113,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
         title: Column(
           children: [
             Text(
-              '⚖ FORMAL DECLARATION ⚖',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.5,
-                color: accentColor,
-              ),
+              '69 FORMAL DECLARATION 69',
+              style: headlineStyle.copyWith(fontSize: 16, color: accentColor, letterSpacing: 1.5, fontWeight: FontWeight.w700),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
@@ -130,29 +128,19 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           children: [
             Text(
               'You hereby accuse',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 16,
-                color: textColor,
-              ),
+              style: bodyStyle.copyWith(fontSize: 16, color: textColor),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               character.name.toUpperCase(),
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: textColor,
-              ),
+              style: headlineStyle.copyWith(fontSize: 20, color: textColor, fontWeight: FontWeight.w900),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               'of this most heinous crime.',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 16,
-                color: textColor,
-              ),
+              style: bodyStyle.copyWith(fontSize: 16, color: textColor),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -164,11 +152,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               ),
               child: Text(
                 'This decision is FINAL.\nYour investigation will conclude.',
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: accentColor,
-                ),
+                style: captionStyle.copyWith(fontSize: 14, color: accentColor, fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -179,14 +163,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             onPressed: () => Navigator.pop(context),
             child: Text(
               'RECONSIDER',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 1,
-                color: isDark
-                    ? GazetteColors.darkTextSecondary
-                    : GazetteColors.inkBrown,
-              ),
+              style: captionStyle.copyWith(fontSize: 14, color: isDark ? GazetteColors.darkTextSecondary : GazetteColors.inkBrown, fontWeight: FontWeight.w600, letterSpacing: 1),
             ),
           ),
           ElevatedButton(
@@ -200,11 +177,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             ),
             child: Text(
               'PROCEED',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1,
-              ),
+              style: headlineStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 1, color: Colors.white),
             ),
           ),
         ],
@@ -244,6 +217,10 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
         isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed;
     final characters = boundCase.template.characters;
 
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final headlineStyle = isDark ? GazetteTypography.headlineDark : GazetteTypography.headline;
+    final bodyStyle = isDark ? GazetteTypography.bodyDark : GazetteTypography.body;
+    final evidenceStyle = isDark ? GazetteTypography.evidenceDark : GazetteTypography.evidence;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -272,22 +249,12 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               children: [
                 Text(
                   'FORMAL ENQUIRY',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2,
-                    color: subtitleColor,
-                  ),
+                  style: captionStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 2, color: subtitleColor),
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'Having gathered the evidence and conducted your investigation, whom do you accuse of this most heinous crime?',
-                  style: GoogleFonts.oldStandardTt(
-                    fontSize: 16,
-                    fontStyle: FontStyle.italic,
-                    height: 1.5,
-                    color: textColor,
-                  ),
+                  style: bodyStyle.copyWith(fontSize: 16, fontStyle: FontStyle.italic, height: 1.5, color: textColor),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -344,11 +311,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               onPressed: () => context.pop(),
               child: Text(
                 'Return to Investigation',
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 14,
-                  color: subtitleColor,
-                  decoration: TextDecoration.underline,
-                ),
+                style: captionStyle.copyWith(fontSize: 14, color: subtitleColor, decoration: TextDecoration.underline),
               ),
             ),
           ),
@@ -361,6 +324,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
 
   Widget _buildAccusationHeader(
       bool isDark, Color textColor, Color accentColor) {
+    final headlineStyle = isDark ? GazetteTypography.headlineDark : GazetteTypography.headline;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
     return Column(
       children: [
         // Decorative top
@@ -370,8 +335,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
-                '⚖',
-                style: TextStyle(fontSize: 20, color: accentColor),
+                '63',
+                style: captionStyle.copyWith(fontSize: 20, color: accentColor),
               ),
             ),
             Expanded(child: Container(height: 2, color: accentColor)),
@@ -382,21 +347,12 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
         // Title
         Text(
           'THE ACCUSATION',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 3,
-            color: textColor,
-          ),
+          style: headlineStyle.copyWith(fontSize: 32, fontWeight: FontWeight.w900, letterSpacing: 3, color: textColor),
         ),
         const SizedBox(height: 4),
         Text(
           'A MOST GRAVE MATTER',
-          style: GoogleFonts.oldStandardTt(
-            fontSize: 14,
-            letterSpacing: 2,
-            color: accentColor,
-          ),
+          style: captionStyle.copyWith(fontSize: 14, letterSpacing: 2, color: accentColor),
         ),
 
         // Decorative bottom
@@ -407,8 +363,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                '◆',
-                style: TextStyle(fontSize: 8, color: textColor),
+                '5C6',
+                style: captionStyle.copyWith(fontSize: 8, color: textColor),
               ),
             ),
             Expanded(child: Container(height: 1, color: textColor)),
@@ -420,7 +376,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
 
   Widget _buildSectionHeader(String title, bool isDark) {
     final textColor = isDark ? GazetteColors.darkText : GazetteColors.inkBlack;
-
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
     return Row(
       children: [
         const Expanded(child: GazetteDivider.simple()),
@@ -428,12 +384,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Text(
             '❧ $title ❧',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.5,
-              color: textColor,
-            ),
+            style: captionStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1.5, color: textColor),
           ),
         ),
         const Expanded(child: GazetteDivider.simple()),
@@ -446,26 +397,19 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
     final borderColor =
         isDark ? GazetteColors.darkTextFaded : GazetteColors.inkBrown;
 
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final evidenceStyle = isDark ? GazetteTypography.evidenceDark : GazetteTypography.evidence;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'STATE YOUR CASE (OPTIONAL)',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 1.5,
-            color: subtitleColor,
-          ),
+          style: captionStyle.copyWith(fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1.5, color: subtitleColor),
         ),
         const SizedBox(height: 4),
         Text(
           'What was their motive?',
-          style: GoogleFonts.oldStandardTt(
-            fontSize: 14,
-            fontStyle: FontStyle.italic,
-            color: subtitleColor,
-          ),
+          style: captionStyle.copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: subtitleColor),
         ),
         const SizedBox(height: 8),
         Container(
@@ -476,18 +420,10 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           child: TextField(
             controller: _motiveController,
             maxLines: 3,
-            style: GoogleFonts.specialElite(
-              fontSize: 14,
-              color: textColor,
-            ),
+            style: evidenceStyle.copyWith(fontSize: 14, color: textColor),
             decoration: InputDecoration(
               hintText: 'Their motive was...',
-              hintStyle: GoogleFonts.specialElite(
-                fontSize: 14,
-                color: isDark
-                    ? GazetteColors.darkTextFaded
-                    : GazetteColors.inkFaded,
-              ),
+              hintStyle: evidenceStyle.copyWith(fontSize: 14, color: isDark ? GazetteColors.darkTextFaded : GazetteColors.inkFaded),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.all(12),
             ),
@@ -572,23 +508,14 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             children: [
               Text(
                 '✦ EXTRA! EXTRA! ✦',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 3,
-                  color: accentColor,
-                ),
+                style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                    .copyWith(fontSize: 16, fontWeight: FontWeight.w900, letterSpacing: 3, color: accentColor),
               ),
               const SizedBox(height: 4),
               Text(
                 'SPECIAL EDITION',
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 11,
-                  letterSpacing: 2,
-                  color: isDark
-                      ? GazetteColors.darkTextSecondary
-                      : GazetteColors.inkBrown,
-                ),
+                style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 11, letterSpacing: 2, color: isDark ? GazetteColors.darkTextSecondary : GazetteColors.inkBrown),
               ),
             ],
           ),
@@ -638,41 +565,27 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               ),
               child: Text(
                 'CASE SOLVED!',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
-                  color: Colors.white,
-                ),
+                style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                    .copyWith(fontSize: 24, fontWeight: FontWeight.w900, letterSpacing: 2, color: Colors.white),
               ),
             ),
             const SizedBox(height: 16),
 
             Text(
               'JUSTICE PREVAILS',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 2,
-                color: textColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 2, color: textColor),
             ),
             const SizedBox(height: 8),
             Text(
               'in the matter of',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 14,
-                fontStyle: FontStyle.italic,
-                color: subtitleColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: subtitleColor),
             ),
             Text(
               boundCase.template.title.toUpperCase(),
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: textColor,
-              ),
+              style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                  .copyWith(fontSize: 18, fontWeight: FontWeight.w700, color: textColor),
               textAlign: TextAlign.center,
             ),
           ],
@@ -716,44 +629,27 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             // GUILTY ESCAPES headline
             Text(
               'THE GUILTY PARTY',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 2,
-                color: isDark
-                    ? GazetteColors.bloodRedLight
-                    : GazetteColors.bloodRed,
-              ),
+                style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 2, color: isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed),
             ),
             Text(
               'ESCAPES!',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 28,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 2,
-                color: isDark
-                    ? GazetteColors.bloodRedLight
-                    : GazetteColors.bloodRed,
-              ),
+                style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                  .copyWith(fontSize: 28, fontWeight: FontWeight.w900, letterSpacing: 2, color: isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed),
             ),
             const SizedBox(height: 16),
 
             Text(
               'Alas, your accusation was in error.',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 16,
-                fontStyle: FontStyle.italic,
-                color: textColor,
-              ),
+              style: (isDark ? GazetteTypography.bodyDark : GazetteTypography.body)
+                  .copyWith(fontSize: 16, fontStyle: FontStyle.italic, color: textColor),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
               'The true perpetrator remains at large...',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 14,
-                color: subtitleColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, color: subtitleColor),
               textAlign: TextAlign.center,
             ),
           ],
@@ -789,12 +685,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           Center(
             child: Text(
               '─── OFFICIAL REPORT ───',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.5,
-                color: subtitleColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1.5, color: subtitleColor),
             ),
           ),
           const SizedBox(height: 16),
@@ -833,12 +725,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             children: [
               Text(
                 'FINAL SCORE',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1,
-                  color: textColor,
-                ),
+                style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                    .copyWith(fontSize: 16, fontWeight: FontWeight.w900, letterSpacing: 1, color: textColor),
               ),
               const Spacer(),
               Container(
@@ -850,11 +738,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
                 ),
                 child: Text(
                   '${_result!.score}',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                    color: accentColor,
-                  ),
+                  style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                      .copyWith(fontSize: 24, fontWeight: FontWeight.w900, color: accentColor),
                 ),
               ),
             ],
@@ -901,12 +786,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           Center(
             child: Text(
               '❧ THE TRUTH REVEALED ❧',
-              style: GoogleFonts.playfairDisplay(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.5,
-                color: textColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 1.5, color: textColor),
             ),
           ),
           const SizedBox(height: 16),
@@ -914,29 +795,19 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           // The perpetrator
           Text(
             'THE PERPETRATOR',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 10,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.5,
-              color: subtitleColor,
-            ),
+            style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                .copyWith(fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: subtitleColor),
           ),
           const SizedBox(height: 4),
           Text(
             perpetrator.name,
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-              color: accentColor,
-            ),
+            style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                .copyWith(fontSize: 20, fontWeight: FontWeight.w900, color: accentColor),
           ),
           Text(
             perpetrator.role,
-            style: GoogleFonts.oldStandardTt(
-              fontSize: 14,
-              fontStyle: FontStyle.italic,
-              color: subtitleColor,
-            ),
+            style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                .copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: subtitleColor),
           ),
 
           const SizedBox(height: 16),
@@ -946,21 +817,14 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           // Motive
           Text(
             'THE MOTIVE',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 10,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.5,
-              color: subtitleColor,
-            ),
+            style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                .copyWith(fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: subtitleColor),
           ),
           const SizedBox(height: 4),
           Text(
             solution.motive,
-            style: GoogleFonts.oldStandardTt(
-              fontSize: 16,
-              height: 1.5,
-              color: textColor,
-            ),
+            style: (isDark ? GazetteTypography.bodyDark : GazetteTypography.body)
+                .copyWith(fontSize: 16, height: 1.5, color: textColor),
           ),
 
           const SizedBox(height: 16),
@@ -968,21 +832,14 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           // Method
           Text(
             'THE METHOD',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 10,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.5,
-              color: subtitleColor,
-            ),
+            style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                .copyWith(fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: subtitleColor),
           ),
           const SizedBox(height: 4),
           Text(
             solution.method,
-            style: GoogleFonts.oldStandardTt(
-              fontSize: 16,
-              height: 1.5,
-              color: textColor,
-            ),
+            style: (isDark ? GazetteTypography.bodyDark : GazetteTypography.body)
+                .copyWith(fontSize: 16, height: 1.5, color: textColor),
           ),
         ],
       ),
@@ -1007,14 +864,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
         children: [
           Text(
             'KEY EVIDENCE OVERLOOKED',
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.5,
-              color: isDark
-                  ? GazetteColors.bloodRedLight
-                  : GazetteColors.bloodRed,
-            ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                .copyWith(fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1.5, color: isDark ? GazetteColors.bloodRedLight : GazetteColors.bloodRed),
           ),
           const SizedBox(height: 12),
 
@@ -1035,18 +886,13 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
                         children: [
                           Text(
                             clue.title,
-                            style: GoogleFonts.playfairDisplay(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: textColor,
-                            ),
+                            style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                                .copyWith(fontSize: 14, fontWeight: FontWeight.w600, color: textColor),
                           ),
                           Text(
                             clue.notebookSummary,
-                            style: GoogleFonts.oldStandardTt(
-                              fontSize: 13,
-                              color: subtitleColor,
-                            ),
+                            style: (isDark ? GazetteTypography.bodyDark : GazetteTypography.body)
+                                .copyWith(fontSize: 13, color: subtitleColor),
                           ),
                         ],
                       ),
@@ -1059,11 +905,8 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
           Center(
             child: Text(
               'Perhaps a fresh investigation is warranted?',
-              style: GoogleFonts.oldStandardTt(
-                fontSize: 14,
-                fontStyle: FontStyle.italic,
-                color: subtitleColor,
-              ),
+              style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                  .copyWith(fontSize: 14, fontStyle: FontStyle.italic, color: subtitleColor),
             ),
           ),
         ],
@@ -1171,12 +1014,8 @@ class _WantedCard extends StatelessWidget {
                 color: accentColor,
                 child: Text(
                   '★ ACCUSED ★',
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2,
-                    color: Colors.white,
-                  ),
+                  style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                      .copyWith(fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 2, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -1213,21 +1052,14 @@ class _WantedCard extends StatelessWidget {
                       children: [
                         Text(
                           character.name.toUpperCase(),
-                          style: GoogleFonts.playfairDisplay(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.5,
-                            color: isSelected ? accentColor : textColor,
-                          ),
+                          style: (isDark ? GazetteTypography.headlineDark : GazetteTypography.headline)
+                              .copyWith(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.5, color: isSelected ? accentColor : textColor),
                         ),
                         const SizedBox(height: 2),
                         Text(
                           character.role,
-                          style: GoogleFonts.oldStandardTt(
-                            fontSize: 13,
-                            fontStyle: FontStyle.italic,
-                            color: subtitleColor,
-                          ),
+                          style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                              .copyWith(fontSize: 13, fontStyle: FontStyle.italic, color: subtitleColor),
                         ),
                         const SizedBox(height: 4),
                         Row(
@@ -1241,10 +1073,8 @@ class _WantedCard extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 locationName,
-                                style: GoogleFonts.oldStandardTt(
-                                  fontSize: 11,
-                                  color: subtitleColor,
-                                ),
+                                style: (isDark ? GazetteTypography.captionDark : GazetteTypography.caption)
+                                    .copyWith(fontSize: 11, color: subtitleColor),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -1315,30 +1145,19 @@ class _ScoreRow extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 14,
-                  color: textColor,
-                ),
+                style: GazetteTypography.body.copyWith(fontSize: 14, color: textColor),
               ),
               if (detail != null)
                 Text(
                   detail!,
-                  style: GoogleFonts.oldStandardTt(
-                    fontSize: 11,
-                    fontStyle: FontStyle.italic,
-                    color: subtitleColor,
-                  ),
+                  style: GazetteTypography.caption.copyWith(fontSize: 11, fontStyle: FontStyle.italic, color: subtitleColor),
                 ),
             ],
           ),
         ),
         Text(
           value,
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: valueColor ?? textColor,
-          ),
+          style: GazetteTypography.headline.copyWith(fontSize: 16, fontWeight: FontWeight.w700, color: valueColor ?? textColor),
         ),
       ],
     );

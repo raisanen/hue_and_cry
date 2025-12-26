@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../theme/gazette_typography.dart';
 
 import '../../models/clue.dart';
 import '../../theme/gazette_colors.dart';
@@ -48,12 +48,16 @@ class EvidenceModal extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDark ? GazetteColors.darkText : GazetteColors.inkBlack;
     final subtitleColor =
-        isDark ? GazetteColors.darkTextSecondary : GazetteColors.inkBrown;
+      isDark ? GazetteColors.darkTextSecondary : GazetteColors.inkBrown;
     final bgColor = isDark ? GazetteColors.darkCard : GazetteColors.parchment;
     final borderColor =
-        isDark ? GazetteColors.darkTextFaded : GazetteColors.inkBrown;
+      isDark ? GazetteColors.darkTextFaded : GazetteColors.inkBrown;
     final accentColor =
-        isDark ? GazetteColors.wanted : GazetteColors.copperplate;
+      isDark ? GazetteColors.wanted : GazetteColors.copperplate;
+    final headlineStyle = isDark ? GazetteTypography.headlineDark : GazetteTypography.headline;
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final evidenceStyle = isDark ? GazetteTypography.evidenceDark : GazetteTypography.evidence;
+    final bodyStyle = isDark ? GazetteTypography.bodyDark : GazetteTypography.body;
 
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -92,12 +96,7 @@ class EvidenceModal extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           clueTypeLabel(clue.type).toUpperCase(),
-                          style: GoogleFonts.playfairDisplay(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.5,
-                            color: subtitleColor,
-                          ),
+                          style: captionStyle.copyWith(fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: subtitleColor),
                         ),
                       ],
                     ),
@@ -106,11 +105,7 @@ class EvidenceModal extends StatelessWidget {
                     // Discovery text
                     Text(
                       clue.discoveryText,
-                      style: GoogleFonts.oldStandardTt(
-                        fontSize: 14,
-                        height: 1.6,
-                        color: textColor,
-                      ),
+                      style: bodyStyle.copyWith(fontSize: 14, height: 1.6, color: textColor),
                     ),
 
                     // Revealed locations banner
@@ -139,10 +134,7 @@ class EvidenceModal extends StatelessWidget {
                       onPressed: () => Navigator.of(context).pop(false),
                       child: Text(
                         'Close',
-                        style: GoogleFonts.oldStandardTt(
-                          fontSize: 14,
-                          color: subtitleColor,
-                        ),
+                        style: captionStyle.copyWith(fontSize: 14, color: subtitleColor),
                       ),
                     ),
                     GazetteButton(
@@ -169,6 +161,8 @@ class EvidenceModal extends StatelessWidget {
     Color accentColor,
     Color borderColor,
   ) {
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final headlineStyle = isDark ? GazetteTypography.headlineDark : GazetteTypography.headline;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -184,22 +178,17 @@ class EvidenceModal extends StatelessWidget {
             children: [
               Text(
                 '❧',
-                style: TextStyle(color: accentColor, fontSize: 14),
+                style: captionStyle.copyWith(color: accentColor, fontSize: 14),
               ),
               const SizedBox(width: 8),
               Text(
                 'EVIDENCE SECURED',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 2,
-                  color: accentColor,
-                ),
+                style: captionStyle.copyWith(fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 2, color: accentColor),
               ),
               const SizedBox(width: 8),
               Text(
                 '❧',
-                style: TextStyle(color: accentColor, fontSize: 14),
+                style: captionStyle.copyWith(color: accentColor, fontSize: 14),
               ),
             ],
           ),
@@ -208,12 +197,7 @@ class EvidenceModal extends StatelessWidget {
           // Title
           Text(
             clue.title.toUpperCase(),
-            style: GoogleFonts.playfairDisplay(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1,
-              color: textColor,
-            ),
+            style: headlineStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w700, letterSpacing: 1, color: textColor),
             textAlign: TextAlign.center,
           ),
         ],
@@ -245,6 +229,8 @@ class EvidenceModal extends StatelessWidget {
   }
 
   Widget _buildRevealBanner(bool isDark) {
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
+    final bodyStyle = isDark ? GazetteTypography.bodyDark : GazetteTypography.body;
     final bannerBg = isDark
         ? GazetteColors.wanted.withOpacity(0.2)
         : GazetteColors.wanted.withOpacity(0.15);
@@ -270,12 +256,7 @@ class EvidenceModal extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 'NEW LOCATION DISCOVERED!',
-                style: GoogleFonts.playfairDisplay(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1,
-                  color: bannerBorder,
-                ),
+                style: captionStyle.copyWith(fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 1, color: bannerBorder),
               ),
             ],
           ),
@@ -285,10 +266,7 @@ class EvidenceModal extends StatelessWidget {
               padding: const EdgeInsets.only(left: 24, top: 2),
               child: Text(
                 '• $name',
-                style: GoogleFonts.oldStandardTt(
-                  fontSize: 13,
-                  color: textColor,
-                ),
+                style: bodyStyle.copyWith(fontSize: 13, color: textColor),
               ),
             ),
           ),
@@ -300,15 +278,12 @@ class EvidenceModal extends StatelessWidget {
   Widget _buildRedHerringHint(bool isDark, Color subtitleColor) {
     // We don't actually tell them it's a red herring - that would ruin it!
     // But we might show a subtle hint in the design
+    final captionStyle = isDark ? GazetteTypography.captionDark : GazetteTypography.caption;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Text(
         'This information has been noted.',
-        style: GoogleFonts.oldStandardTt(
-          fontSize: 11,
-          fontStyle: FontStyle.italic,
-          color: subtitleColor,
-        ),
+        style: captionStyle.copyWith(fontSize: 11, fontStyle: FontStyle.italic, color: subtitleColor),
         textAlign: TextAlign.center,
       ),
     );
