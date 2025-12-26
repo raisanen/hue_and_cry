@@ -80,7 +80,7 @@ Run build_runner to generate the Freezed code.
 
 ---
 
-## Prompt 3: Utility Functions
+## Prompt 3: Utility Functions -- DONE
 
 ```
 Create utility functions in lib/utils/:
