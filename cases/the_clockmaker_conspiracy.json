@@ -1,0 +1,130 @@
+{
+  "id": "the_clockmaker_conspiracy",
+  "title": "THE CLOCKMAKER CONSPIRACY",
+  "subtitle": "A Web of Gears, Greed, and Betrayal Unwinds in the City’s Heart",
+  "teaser": "Master clockmaker Hugo Brandt is found dead in his workshop, surrounded by shattered timepieces. Was it a tragic accident, or the work of a rival? The city’s clocks run wild as suspicion falls on all who knew him.",
+  "briefing": "Hugo Brandt, famed for his intricate automata, was discovered lifeless amid a chaos of broken clocks. His apprentice claims innocence, but rumors swirl of industrial espionage and a secret invention. Can you untangle the gears of conspiracy before time runs out?",
+  "difficulty": 3,
+  "estimatedMinutes": 50,
+  "parVisits": 5,
+  "locations": {
+    "workshop_scene": {
+      "id": "workshop_scene",
+      "role": "crimeScene",
+      "preferredTags": ["shop=watchmaker", "shop=clock"],
+      "required": true,
+      "descriptionTemplate": "a cramped workshop filled with ticking clocks"
+    },
+    "pub_gossip": {
+      "id": "pub_gossip",
+      "role": "information",
+      "preferredTags": ["amenity=pub", "amenity=bar"],
+      "required": true,
+      "descriptionTemplate": "a smoky pub where artisans gather"
+    },
+    "factory_floor": {
+      "id": "factory_floor",
+      "role": "suspectWork",
+      "preferredTags": ["office=factory", "shop=hardware"],
+      "required": false,
+      "descriptionTemplate": "a bustling factory floor with the scent of oil"
+    },
+    "police_station": {
+      "id": "police_station",
+      "role": "authority",
+      "preferredTags": ["amenity=police"],
+      "required": false,
+      "descriptionTemplate": "the city constabulary’s imposing headquarters"
+    }
+  },
+  "characters": [
+    {
+      "id": "apprentice_elsa",
+      "name": "Elsa Weber",
+      "role": "Apprentice",
+      "locationId": "workshop_scene",
+      "description": "A nervous young woman, hands stained with oil.",
+      "initialDialogue": "\"I would never harm Master Brandt! He was like a father to me.\"",
+      "conditionalDialogue": {"clue_secret": "He was working on something new, but wouldn’t tell me what."}
+    },
+    {
+      "id": "foreman_keller",
+      "name": "Foreman Keller",
+      "role": "Factory Foreman",
+      "locationId": "factory_floor",
+      "description": "A burly man with a suspicious scowl.",
+      "initialDialogue": "\"Brandt’s clocks put us out of business. Good riddance, some say.\"",
+      "conditionalDialogue": {}
+    },
+    {
+      "id": "sergeant_muller",
+      "name": "Sergeant Müller",
+      "role": "Sergeant",
+      "locationId": "police_station",
+      "description": "A methodical investigator, notebook always in hand.",
+      "initialDialogue": "\"We’re treating this as suspicious. Too many loose gears for my liking.\"",
+      "conditionalDialogue": {}
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_broken_clock",
+      "type": "physical",
+      "locationId": "workshop_scene",
+      "title": "Broken Clock",
+      "discoveryText": "A shattered clock, its gears jammed with a foreign object.",
+      "notebookSummary": "A clock was sabotaged with a piece of wire.",
+      "prerequisites": [],
+      "reveals": ["factory_floor"],
+      "characterId": null,
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_secret",
+      "type": "testimony",
+      "locationId": "workshop_scene",
+      "title": "Secret Project",
+      "discoveryText": "Elsa reveals Brandt was working on a secret invention.",
+      "notebookSummary": "Brandt had a secret project, details unknown.",
+      "prerequisites": ["clue_broken_clock"],
+      "reveals": ["pub_gossip"],
+      "characterId": "apprentice_elsa",
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_factory_rivalry",
+      "type": "testimony",
+      "locationId": "factory_floor",
+      "title": "Factory Rivalry",
+      "discoveryText": "Keller admits the factory lost contracts to Brandt’s superior clocks.",
+      "notebookSummary": "Factory resented Brandt’s success.",
+      "prerequisites": ["clue_secret"],
+      "reveals": ["police_station"],
+      "characterId": "foreman_keller",
+      "isEssential": false,
+      "isRedHerring": true
+    },
+    {
+      "id": "clue_pub_rumor",
+      "type": "testimony",
+      "locationId": "pub_gossip",
+      "title": "Pub Rumor",
+      "discoveryText": "A patron claims Brandt argued with a mysterious visitor days before his death.",
+      "notebookSummary": "Brandt was seen arguing with a stranger.",
+      "prerequisites": ["clue_secret"],
+      "reveals": [],
+      "characterId": null,
+      "isEssential": true,
+      "isRedHerring": false
+    }
+  ],
+  "solution": {
+    "perpetratorId": "mysterious_visitor",
+    "motive": "Industrial espionage—Brandt’s invention threatened powerful interests.",
+    "method": "The visitor sabotaged a clock, causing a fatal accident. The secret project was stolen in the chaos.",
+    "keyEvidence": ["clue_broken_clock", "clue_secret", "clue_pub_rumor"],
+    "optimalPath": ["workshop_scene", "pub_gossip", "factory_floor"]
+  }
+}

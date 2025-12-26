@@ -1,9 +1,12 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "cases": [
     "vanishing_violinist",
     "midnight_apothecary",
     "dockside_conspiracy",
-    "seance_murders"
+    "seance_murders",
+    "the_missing_messenger",
+    "the_clockmaker_conspiracy",
+    "the_haunting_of_ashgrove_abbey"
   ]
 }

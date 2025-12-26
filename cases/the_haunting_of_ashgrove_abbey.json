@@ -1,0 +1,130 @@
+{
+  "id": "the_haunting_of_ashgrove_abbey",
+  "title": "THE HAUNTING OF ASHGROVE ABBEY",
+  "subtitle": "A Chilling Specter Stalks the Hallowed Halls—Is There a Mortal Hand at Work?",
+  "teaser": "Monks at Ashgrove Abbey report ghostly apparitions and strange noises. When a priceless relic vanishes, fear gives way to suspicion. Is the abbey truly haunted, or is a clever thief at large?",
+  "briefing": "For weeks, the monks of Ashgrove Abbey have been plagued by eerie happenings. Now, the revered Silver Chalice is missing. The abbot pleads for discretion—and a sharp mind to pierce the veil of superstition.",
+  "difficulty": 5,
+  "estimatedMinutes": 70,
+  "parVisits": 7,
+  "locations": {
+    "abbey_scene": {
+      "id": "abbey_scene",
+      "role": "crimeScene",
+      "preferredTags": ["amenity=place_of_worship"],
+      "required": true,
+      "descriptionTemplate": "an ancient abbey shrouded in mist"
+    },
+    "cemetery_ground": {
+      "id": "cemetery_ground",
+      "role": "hidden",
+      "preferredTags": ["landuse=cemetery"],
+      "required": true,
+      "descriptionTemplate": "a mossy graveyard behind the abbey"
+    },
+    "library_study": {
+      "id": "library_study",
+      "role": "information",
+      "preferredTags": ["amenity=library"],
+      "required": false,
+      "descriptionTemplate": "a quiet library filled with ancient tomes"
+    },
+    "inn_tavern": {
+      "id": "inn_tavern",
+      "role": "atmosphere",
+      "preferredTags": ["amenity=pub", "amenity=bar"],
+      "required": false,
+      "descriptionTemplate": "a rustic tavern where locals gossip"
+    }
+  },
+  "characters": [
+    {
+      "id": "abbot_francis",
+      "name": "Abbot Francis",
+      "role": "Abbot",
+      "locationId": "abbey_scene",
+      "description": "A dignified man, troubled by recent events.",
+      "initialDialogue": "\"The abbey has stood for centuries. Never have we known such unrest.\"",
+      "conditionalDialogue": {"clue_relic_missing": "The chalice vanished after the ghost appeared."}
+    },
+    {
+      "id": "brother_paul",
+      "name": "Brother Paul",
+      "role": "Monk",
+      "locationId": "cemetery_ground",
+      "description": "A superstitious monk, easily frightened.",
+      "initialDialogue": "\"I saw the specter, I swear it! It glided among the graves.\"",
+      "conditionalDialogue": {"clue_footprints": "There were footprints in the dew—too large for any of us."}
+    },
+    {
+      "id": "innkeeper_madge",
+      "name": "Madge the Innkeeper",
+      "role": "Innkeeper",
+      "locationId": "inn_tavern",
+      "description": "A shrewd woman with a sharp tongue.",
+      "initialDialogue": "\"Ghosts? Bah! I say someone’s after the abbey’s silver.\"",
+      "conditionalDialogue": {}
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_relic_missing",
+      "type": "record",
+      "locationId": "abbey_scene",
+      "title": "Missing Relic",
+      "discoveryText": "The Silver Chalice is gone, its display case forced open.",
+      "notebookSummary": "The abbey’s prized relic was stolen during the haunting.",
+      "prerequisites": [],
+      "reveals": ["cemetery_ground"],
+      "characterId": "abbot_francis",
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_footprints",
+      "type": "observation",
+      "locationId": "cemetery_ground",
+      "title": "Strange Footprints",
+      "discoveryText": "Large muddy footprints lead from the abbey to the graveyard wall.",
+      "notebookSummary": "Unusual footprints suggest a human culprit.",
+      "prerequisites": ["clue_relic_missing"],
+      "reveals": ["library_study"],
+      "characterId": "brother_paul",
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_ghost_story",
+      "type": "testimony",
+      "locationId": "inn_tavern",
+      "title": "Ghost Story",
+      "discoveryText": "A local claims the abbey is cursed, but offers no proof.",
+      "notebookSummary": "Tavern gossip blames a curse for the haunting.",
+      "prerequisites": ["clue_footprints"],
+      "reveals": [],
+      "characterId": "innkeeper_madge",
+      "isEssential": false,
+      "isRedHerring": true
+    },
+    {
+      "id": "clue_old_map",
+      "type": "record",
+      "locationId": "library_study",
+      "title": "Old Abbey Map",
+      "discoveryText": "A map reveals a hidden passage from the abbey to the graveyard.",
+      "notebookSummary": "There is a secret passage connecting the abbey and cemetery.",
+      "prerequisites": ["clue_footprints"],
+      "reveals": [],
+      "characterId": null,
+      "isEssential": true,
+      "isRedHerring": false
+    }
+  ],
+  "solution": {
+    "perpetratorId": "brother_paul",
+    "motive": "Brother Paul, desperate to pay old debts, staged the haunting to cover his theft of the chalice.",
+    "method": "He donned a sheet to play the ghost, then used the secret passage to escape with the relic.",
+    "keyEvidence": ["clue_relic_missing", "clue_footprints", "clue_old_map"],
+    "optimalPath": ["abbey_scene", "cemetery_ground", "library_study"]
+  }
+}

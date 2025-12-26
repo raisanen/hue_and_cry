@@ -1,0 +1,101 @@
+{
+  "id": "the_missing_messenger",
+  "title": "THE MISSING MESSENGER",
+  "subtitle": "A Boy Vanishes on His Rounds—Foul Play or Flight?",
+  "teaser": "Young Tommy Price, a trusted messenger for the Gazette, failed to return from his evening deliveries. His satchel was found in a riverside park, its contents scattered. The city whispers: was he taken, or did he run?",
+  "briefing": "Tommy Price, age 12, vanished last night while delivering urgent news. His route took him through the city’s busiest and most shadowed streets. The Gazette offers a reward for his safe return. Was this a child’s mischief, or something more sinister?",
+  "difficulty": 1,
+  "estimatedMinutes": 25,
+  "parVisits": 3,
+  "locations": {
+    "park_scene": {
+      "id": "park_scene",
+      "role": "crimeScene",
+      "preferredTags": ["leisure=park"],
+      "required": true,
+      "descriptionTemplate": "a riverside park where children play"
+    },
+    "cafe_gossip": {
+      "id": "cafe_gossip",
+      "role": "information",
+      "preferredTags": ["amenity=cafe"],
+      "required": true,
+      "descriptionTemplate": "a bustling café popular with newsboys"
+    },
+    "police_station": {
+      "id": "police_station",
+      "role": "authority",
+      "preferredTags": ["amenity=police"],
+      "required": false,
+      "descriptionTemplate": "the local constabulary’s modest office"
+    }
+  },
+  "characters": [
+    {
+      "id": "mrs_price",
+      "name": "Mrs. Price",
+      "role": "Mother",
+      "locationId": "cafe_gossip",
+      "description": "A worried mother, wringing her hands.",
+      "initialDialogue": "\"Tommy never runs off. He’s a good boy—always home by supper.\"",
+      "conditionalDialogue": {}
+    },
+    {
+      "id": "constable_jones",
+      "name": "Constable Jones",
+      "role": "Constable",
+      "locationId": "police_station",
+      "description": "A gruff but fair officer.",
+      "initialDialogue": "\"We’re searching the riverbanks. No sign yet, but we’ll find the lad.\"",
+      "conditionalDialogue": {}
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_satchel",
+      "type": "physical",
+      "locationId": "park_scene",
+      "title": "Tommy’s Satchel",
+      "discoveryText": "You find Tommy’s satchel, torn and empty, near the park bench.",
+      "notebookSummary": "Tommy’s satchel was found in the park, contents missing.",
+      "prerequisites": [],
+      "reveals": ["cafe_gossip"],
+      "characterId": null,
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_gossip",
+      "type": "testimony",
+      "locationId": "cafe_gossip",
+      "title": "Newsboy Gossip",
+      "discoveryText": "A newsboy claims he saw Tommy talking to a stranger by the river.",
+      "notebookSummary": "Tommy was seen with a stranger near the river.",
+      "prerequisites": ["clue_satchel"],
+      "reveals": ["police_station"],
+      "characterId": "mrs_price",
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_false_alarm",
+      "type": "record",
+      "locationId": "police_station",
+      "title": "False Alarm",
+      "discoveryText": "Constable Jones reports a false sighting—Tommy was not at the docks.",
+      "notebookSummary": "Police checked the docks; Tommy was not found there.",
+      "prerequisites": ["clue_gossip"],
+      "reveals": [],
+      "characterId": "constable_jones",
+      "isEssential": false,
+      "isRedHerring": true
+    }
+  ],
+  "solution": {
+    "perpetratorId": "stranger",
+    "motive": "The stranger lured Tommy with promises of coin, intending to rob him of the Gazette’s urgent dispatches.",
+    "method": "Tommy was approached in the park, his satchel stolen. Frightened, he hid until morning, then returned home.",
+    "keyEvidence": ["clue_satchel", "clue_gossip"],
+    "optimalPath": ["park_scene", "cafe_gossip"]
+  }
+}
