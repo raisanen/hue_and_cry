@@ -550,7 +550,7 @@ Create marker widgets in lib/widgets/map/:
 
 ---
 
-## Prompt 14: Location Screen
+## Prompt 14: Location Screen -- DONE
 
 ```
 Create the location investigation screen in lib/screens/location_screen.dart:
