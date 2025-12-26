@@ -16,7 +16,7 @@
     },
     "ashworth_estate": {
       "id": "ashworth_estate",
-      "role": "suspectHome",
+      "role": "witness",
       "preferredTags": ["building=mansion", "historic=manor", "tourism=attraction"],
       "fallbackRole": "crimeScene",
       "required": true,

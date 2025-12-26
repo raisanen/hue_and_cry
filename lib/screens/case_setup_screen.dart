@@ -405,10 +405,12 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
   }
 
   Widget _buildHeader(Color textColor, Color subtitleColor) {
+    final title = _caseTemplate?.title ?? 'Loading...';
+    final subtitle = _caseTemplate?.subtitle ?? '';
     return Column(
       children: [
         Text(
-          _caseTemplate!.title.toUpperCase(),
+          title.toUpperCase(),
           style: GoogleFonts.playfairDisplay(
             fontSize: 20,
             fontWeight: FontWeight.w700,
@@ -419,7 +421,7 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
         ),
         const SizedBox(height: 4),
         Text(
-          _caseTemplate!.subtitle,
+          subtitle,
           style: GoogleFonts.oldStandardTt(
             fontSize: 14,
             fontStyle: FontStyle.italic,
