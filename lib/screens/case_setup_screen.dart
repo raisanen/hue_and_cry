@@ -327,6 +327,8 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
     setState(() {
       _isDemoMode = true;
     });
+    // Set the demo position in the location provider for the map screen
+    ref.read(locationStateProvider.notifier).setDemoPosition(_demoLocation);
     _startSetup();
   }
 

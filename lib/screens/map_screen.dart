@@ -318,7 +318,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         Marker(
           point: locationPos,
           width: 88,
-          height: 70,
+          height: 80,
           child: LocationMarker(
             name: boundLocation.displayName,
             state: markerState,

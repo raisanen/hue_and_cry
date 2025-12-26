@@ -148,6 +148,23 @@ class LocationStateNotifier extends StateNotifier<LocationState> {
     await initialize();
   }
 
+  /// Sets a fixed demo position.
+  ///
+  /// Use for web demo mode or testing without real GPS.
+  /// This will stop any active position stream and use the fixed position.
+  void setDemoPosition(LatLng position) {
+    _positionSubscription?.cancel();
+    _positionSubscription = null;
+    _isInitialized = true;
+
+    state = LocationState(
+      status: LocationStatus.ready,
+      currentPosition: position,
+      lastUpdated: DateTime.now(),
+      accuracy: 10.0, // Demo accuracy
+    );
+  }
+
   @override
   void dispose() {
     _positionSubscription?.cancel();
