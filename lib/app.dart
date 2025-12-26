@@ -11,6 +11,8 @@ class HueAndCryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hue & Cry',
       theme: GazetteTheme.lightTheme,
+      darkTheme: GazetteTheme.darkTheme,
+      themeMode: ThemeMode.dark, // Dark theme is the default
       debugShowCheckedModeBanner: false,
       home: const Scaffold(
         body: Center(

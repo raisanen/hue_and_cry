@@ -519,9 +519,15 @@ The visual design mimics 1800s Police Gazette newspapers—sensationalist crime 
 
 ### Color Palette
 
+The app supports both light and dark themes. **Dark theme is the default**, evoking the atmosphere of reading by gaslight or candlelight—fitting for a Victorian mystery game and easier on the eyes for extended play sessions.
+
 ```dart
 // gazette_colors.dart
 class GazetteColors {
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LIGHT THEME COLORS (Classic aged paper look)
+  // ═══════════════════════════════════════════════════════════════════════════
+  
   // Paper and backgrounds
   static const Color parchment = Color(0xFFF5F0E1);      // Aged paper cream
   static const Color paperWhite = Color(0xFFFAF8F5);     // Cleaner cream
@@ -531,9 +537,28 @@ class GazetteColors {
   static const Color inkBlack = Color(0xFF1A1A1A);       // Rich black text
   static const Color inkBrown = Color(0xFF3D2B1F);       // Aged ink, sepia
   static const Color inkFaded = Color(0xFF5C4B3A);       // Secondary text
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DARK THEME COLORS (Midnight edition / gas-lit atmosphere)
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  // Dark backgrounds (like reading by candlelight)
+  static const Color darkBackground = Color(0xFF1A1612);     // Deep warm black
+  static const Color darkSurface = Color(0xFF2A2420);        // Slightly lighter
+  static const Color darkCard = Color(0xFF332D28);           // Card background
+
+  // Light text on dark (aged paper color as text)
+  static const Color darkText = Color(0xFFE8E0D0);           // Warm cream text
+  static const Color darkTextSecondary = Color(0xFFB8A898);  // Muted cream
+  static const Color darkTextFaded = Color(0xFF8A7A6A);      // Faded text
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  // SHARED ACCENT COLORS (used in both themes)
+  // ═══════════════════════════════════════════════════════════════════════════
   
   // Accent colors (used sparingly, as spot color)
   static const Color bloodRed = Color(0xFF8B0000);       // Headlines, alerts
+  static const Color bloodRedLight = Color(0xFFB33030);  // Lighter for dark theme
   static const Color copperplate = Color(0xFF6B4423);    // Decorative elements
   static const Color wanted = Color(0xFFB8860B);         // Gold/reward emphasis
   
