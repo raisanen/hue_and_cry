@@ -107,7 +107,7 @@ Write unit tests for geo_utils.dart in test/utils/geo_utils_test.dart.
 
 ---
 
-## Prompt 4: Overpass Service
+## Prompt 4: Overpass Service -- DONE
 
 ```
 Create the Overpass API service in lib/services/overpass_service.dart:
