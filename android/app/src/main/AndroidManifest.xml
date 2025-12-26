@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Location permissions for GPS-based gameplay -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
-        android:label="hue_and_cry"
+        android:label="Hue &amp; Cry"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

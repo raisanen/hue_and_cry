@@ -51,23 +51,26 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   
-  assets:
-    - assets/images/
-    - assets/images/ornaments/
-    - assets/images/engravings/
+  # Asset directories - uncomment when adding assets
+  # assets:
+  #   - assets/images/
+  #   - assets/images/ornaments/
+  #   - assets/images/engravings/
   
-  fonts:
-    - family: OldStandardTT
-      fonts:
-        - asset: assets/fonts/OldStandardTT/OldStandardTT-Regular.ttf
-        - asset: assets/fonts/OldStandardTT/OldStandardTT-Italic.ttf
-          style: italic
-        - asset: assets/fonts/OldStandardTT/OldStandardTT-Bold.ttf
-          weight: 700
-    - family: PlayfairDisplay
-      fonts:
-        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
-        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf
-          weight: 900
+  # Local fonts - currently using google_fonts package instead
+  # Uncomment to bundle fonts locally for offline support
+  # fonts:
+  #   - family: OldStandardTT
+  #     fonts:
+  #       - asset: assets/fonts/OldStandardTT/OldStandardTT-Regular.ttf
+  #       - asset: assets/fonts/OldStandardTT/OldStandardTT-Italic.ttf
+  #         style: italic
+  #       - asset: assets/fonts/OldStandardTT/OldStandardTT-Bold.ttf
+  #         weight: 700
+  #   - family: PlayfairDisplay
+  #     fonts:
+  #       - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
+  #       - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf
+  #         weight: 900
