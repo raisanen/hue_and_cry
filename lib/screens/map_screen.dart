@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import '../models/bound_case.dart';
 import '../providers/game_state_provider.dart';
 import '../providers/location_provider.dart';
@@ -185,12 +187,16 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         initialZoom: defaultMapZoom,
         minZoom: minMapZoom,
         maxZoom: maxMapZoom,
-        onTap: (_, __) {
+        onTap: (tapPosition, latlng) {
           // Dismiss tooltip on map tap
           setState(() {
             _showDistanceTooltip = false;
             _selectedLocationId = null;
           });
+          // On web, allow manual player movement for testing
+          if (kIsWeb && latlng != null) {
+            ref.read(locationStateProvider.notifier).setDemoPosition(latlng);
+          }
         },
       ),
       children: [

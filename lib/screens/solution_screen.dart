@@ -147,7 +147,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: accentColor.withOpacity(0.1),
+                color: accentColor.withOpacity(0.1.clamp(0.0, 1.0)),
                 border: Border.all(color: accentColor),
               ),
               child: Text(
@@ -462,7 +462,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               return Transform.scale(
                 scale: 0.8 + (0.2 * _revealAnimation.value),
                 child: Opacity(
-                  opacity: _revealAnimation.value,
+                  opacity: _revealAnimation.value.clamp(0.0, 1.0),
                   child: _buildResultCard(isDark, boundCase),
                 ),
               );
@@ -545,7 +545,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
               height: 80,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: GazetteColors.success.withOpacity(0.15),
+                color: GazetteColors.success.withOpacity(0.15.clamp(0.0, 1.0)),
                 border: Border.all(color: GazetteColors.success, width: 3),
               ),
               child: const Icon(
@@ -608,7 +608,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
                 color: (isDark
                         ? GazetteColors.bloodRedLight
                         : GazetteColors.bloodRed)
-                    .withOpacity(0.15),
+                    .withOpacity(0.15.clamp(0.0, 1.0)),
                 border: Border.all(
                   color: isDark
                       ? GazetteColors.bloodRedLight
@@ -733,7 +733,7 @@ class _SolutionScreenState extends ConsumerState<SolutionScreen>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: accentColor.withOpacity(0.15),
+                  color: accentColor.withOpacity(0.15.clamp(0.0, 1.0)),
                   border: Border.all(color: accentColor, width: 2),
                 ),
                 child: Text(
@@ -991,14 +991,14 @@ class _WantedCard extends StatelessWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: accentColor.withOpacity(0.3),
+                    color: accentColor.withOpacity(0.3.clamp(0.0, 1.0)),
                     blurRadius: 12,
                     spreadRadius: 2,
                   ),
                 ]
               : [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withOpacity(0.1.clamp(0.0, 1.0)),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),

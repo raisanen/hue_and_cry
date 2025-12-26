@@ -358,8 +358,8 @@ class _NotebookScreenState extends ConsumerState<NotebookScreen>
               child: GazetteButton.primary(
                 text: 'Make Accusation',
                 icon: Icons.gavel,
-                onPressed: () {
-                  context.push('/case/${widget.caseId}/solution');
+                  onPressed: () {
+                    context.push('/case/${widget.caseId}/solve');
                 },
               ),
             ),
