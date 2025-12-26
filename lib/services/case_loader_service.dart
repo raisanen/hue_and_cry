@@ -12,6 +12,9 @@ class CaseLoaderService {
   /// List of available case IDs.
   static const List<String> availableCaseIds = [
     'vanishing_violinist',
+    'midnight_apothecary',
+    'dockside_conspiracy',
+    'seance_murders',
   ];
 
   /// Loads a case template from assets by ID.
