@@ -1,0 +1,244 @@
+{
+  "id": "dockside_conspiracy",
+  "title": "THE DOCKSIDE CONSPIRACY",
+  "subtitle": "Murder and Smuggling at the Merchant's Wharf",
+  "teaser": "The morning tide revealed a grisly discovery: customs inspector Cornelius Blackwood, throat cut, weighted with chains. He was close to exposing a smuggling ring—now he is silenced forever. The conspiracy runs deeper than the harbour itself.",
+  "briefing": "═══════════════════════════════════════════════════════════════════════════\n\n                    ❧ BODY FOUND AT DAWN ❧\n                        \nThe morning tide revealed a grisly discovery at MERCHANT'S WHARF: \nthe body of customs inspector CORNELIUS BLACKWOOD, throat cut, \nweighted with chains and anchored to a pier post.\n\nMr. Blackwood was known as an incorruptible officer who had spent \nmonths investigating a smuggling ring operating from the docks. His \ncolleagues report he was close to identifying the ringleader—a \nrevelation that would have exposed wealthy merchants and powerful \nfigures.\n\nNow he is silenced forever.\n\nThe dockyards are a world unto themselves—longshoremen, sailors, \nmerchants, and criminals intermingle in the shadow of great ships. \nTrust is scarce, and loose tongues have a way of getting their \nowners killed.\n\nNavigate this treacherous world carefully, investigator. The \nconspiricy runs deeper than the harbor itself.\n\n═══════════════════════════════════════════════════════════════════════════\n",
+  "difficulty": 3,
+  "estimatedMinutes": 60,
+  "parVisits": 5,
+  "locations": {
+    "customs_office": {
+      "id": "customs_office",
+      "role": "authority",
+      "preferredTags": ["office=government", "amenity=townhall"],
+      "fallbackRole": "suspectWork",
+      "required": true,
+      "descriptionTemplate": "the customs house where Blackwood maintained his office"
+    },
+    "dockside_tavern": {
+      "id": "dockside_tavern",
+      "role": "information",
+      "preferredTags": ["amenity=pub", "amenity=bar"],
+      "required": true,
+      "descriptionTemplate": "a rough establishment frequented by sailors and dock workers"
+    },
+    "merchant_warehouse": {
+      "id": "merchant_warehouse",
+      "role": "suspectWork",
+      "preferredTags": ["building=warehouse", "building=industrial", "shop=trade"],
+      "fallbackRole": "crimeScene",
+      "required": true,
+      "descriptionTemplate": "a large warehouse belonging to the merchant company"
+    },
+    "harbor_pier": {
+      "id": "harbor_pier",
+      "role": "crimeScene",
+      "preferredTags": ["leisure=marina", "amenity=ferry_terminal", "waterway=dock"],
+      "fallbackRole": "hidden",
+      "required": true,
+      "descriptionTemplate": "the pier where Blackwood's body was discovered"
+    },
+    "shipping_office": {
+      "id": "shipping_office",
+      "role": "suspectWork",
+      "preferredTags": ["office=company", "office=logistics"],
+      "fallbackRole": "information",
+      "required": true,
+      "descriptionTemplate": "offices of the shipping company"
+    },
+    "sailors_lodging": {
+      "id": "sailors_lodging",
+      "role": "witness",
+      "preferredTags": ["tourism=hotel", "tourism=hostel"],
+      "fallbackRole": "atmosphere",
+      "required": false,
+      "descriptionTemplate": "cheap lodgings for transient sailors"
+    },
+    "church_sanctuary": {
+      "id": "church_sanctuary",
+      "role": "hidden",
+      "preferredTags": ["amenity=place_of_worship"],
+      "required": false,
+      "descriptionTemplate": "a church offering sanctuary from the dangers of the docks"
+    }
+  },
+  "characters": [
+    {
+      "id": "deputy_marsh",
+      "name": "Deputy Inspector Marsh",
+      "role": "Customs Deputy",
+      "locationId": "customs_office",
+      "description": "A thin, nervous man who seems perpetually on the verge of looking over his shoulder. Deputy Marsh has worked in customs for fifteen years, always in the shadow of more ambitious men.\n",
+      "initialDialogue": "\"Cornelius was... thorough. Perhaps too thorough for his own good.\"\n\nDeputy Marsh shuffles papers on his desk, avoiding your gaze.\n\n\"He trusted no one—not even me, and we worked together for three years. Said the conspiracy reached into the highest offices. Even hinted that someone in customs was involved.\"\n\nHe lowers his voice.\n\n\"The night before he died, he was excited. Said he'd finally found proof—shipping manifests that didn't match cargo weights. He was going to expose everything.\"\n\n\"Now those documents are missing from his office.\"\n",
+      "conditionalDialogue": {
+        "clue_missing_manifest": "Marsh's eyes widen.\n\n\"You found a copy? Cornelius must have hidden one—clever bastard.\"\n\nHe examines the document eagerly.\n\n\"Look here—the manifest shows fifty crates of tea from the Orient. But the cargo log shows seventy crates were unloaded. Twenty crates went... somewhere.\"\n\n\"That's the Hartley Shipping Company. Sir Reginald Hartley is one of the wealthiest merchants in the city. Surely he couldn't be...\"\n",
+        "clue_bribe_ledger": "\"My God. It's all here.\"\n\nMarsh's hands shake as he reads.\n\n\"Payments to dock supervisors, customs clerks, even a magistrate. And look—initials 'R.H.' beside each entry.\"\n\n\"Sir Reginald Hartley. He's been buying protection for his smuggling operation for years. And Cornelius found out.\"\n"
+      }
+    },
+    {
+      "id": "mick_sullivan",
+      "name": "Mick Sullivan",
+      "role": "Dockworker",
+      "locationId": "dockside_tavern",
+      "description": "A massive Irishman with hands like shovels and a face that's been rearranged by countless fistfights. Despite his fearsome appearance, Mick's eyes are sharp and wary.\n",
+      "initialDialogue": "\"Blackwood? Aye, I knew him. Asked a lot of questions, that one.\"\n\nMick takes a long pull of his ale.\n\n\"The lads on the docks, we got a saying: see nothing, hear nothing, live longer. Most of us follow it. Blackwood didn't.\"\n\nHe glances around the tavern.\n\n\"Night he died, there was strange business at Warehouse Seven. Lights after midnight, men moving quiet-like. I was working late, saw them loading something onto a private cart. Not the usual crew.\"\n\n\"Recognized one of them—Hartley's foreman, a nasty piece of work named Grimsby.\"\n",
+      "conditionalDialogue": {
+        "clue_warehouse_lights": "\"You want to know more about that night?\"\n\nMick leans closer.\n\n\"I shouldn't be telling you this, but Blackwood was decent to me once. Looked the other way when my papers weren't quite right.\"\n\n\"I saw them bring Blackwood to the pier. He was still alive, struggling. Grimsby and two others. They... they did what they did, and weighted him down.\"\n\n\"Grimsby takes orders from Sir Reginald himself. Everyone knows it.\"\n",
+        "clue_opium_cache": "\"Opium? That's what's in those extra crates?\"\n\nMick lets out a low whistle.\n\n\"Makes sense now. The secret shipments, the bribes, killing a customs man. Opium trade's worth more than gold.\"\n\n\"Hartley's been getting rich poisoning the city, and Blackwood was going to expose him.\"\n"
+      }
+    },
+    {
+      "id": "sir_reginald",
+      "name": "Sir Reginald Hartley",
+      "role": "Shipping Magnate",
+      "locationId": "shipping_office",
+      "description": "A corpulent man in expensive tailoring, Sir Reginald exudes the confidence of inherited wealth and cultivated power. His smile never reaches his cold, calculating eyes.\n",
+      "initialDialogue": "\"Inspector Blackwood's death? A tragedy, of course. The docks can be dangerous for those unaccustomed to their... rougher elements.\"\n\nSir Reginald gestures expansively from behind his mahogany desk.\n\n\"I operate a legitimate shipping enterprise. Tea, spices, textiles from the Orient. All properly documented and taxed. The very suggestion of impropriety is slanderous.\"\n\nHe fixes you with a cold stare.\n\n\"I am a patron of this city. I fund hospitals, churches, the orphanage. Whatever Blackwood thought he found, he was mistaken.\"\n\n\"Now, unless you have specific evidence—and I know you don't—I suggest you look elsewhere for your murderer.\"\n",
+      "conditionalDialogue": {
+        "clue_bribe_ledger": "Sir Reginald's composure finally cracks.\n\n\"Where did you get that? That's... that's been fabricated! A forgery designed to discredit me!\"\n\nHe rises, face purpling.\n\n\"Do you know who I am? I have friends in Parliament! The Lord Mayor dines at my table! You cannot possibly think to accuse—\"\n\nHe stops, visibly composing himself.\n\n\"You will regret this investigation. I have powerful allies, and they protect their investments.\"\n",
+        "clue_opium_cache": "For the first time, genuine fear flickers in Sir Reginald's eyes.\n\n\"You found the warehouse? That's... that's not possible. Grimsby assured me...\"\n\nHe realizes his mistake too late.\n\n\"I mean to say, I have no knowledge of any illegal substances in any warehouse. If such things exist, they were placed there by enemies seeking to frame me.\"\n\nHis voice has lost its commanding tone. He's sweating now.\n"
+      }
+    },
+    {
+      "id": "grimsby",
+      "name": "William Grimsby",
+      "role": "Warehouse Foreman",
+      "locationId": "merchant_warehouse",
+      "description": "A scarred brute with dead eyes and hands that look comfortable around a weapon. Grimsby moves with the coiled menace of a man who has done violence and will do so again without hesitation.\n",
+      "initialDialogue": "\"You're that investigator, ain't you? Asking questions about Blackwood.\"\n\nGrimsby blocks your path, arms crossed.\n\n\"I don't know nothing about any customs man. I unload ships, stack crates, mind my own business. That's all.\"\n\nHis smile is unpleasant.\n\n\"Docks are dangerous at night. Accidents happen. Men fall into the water, get tangled in ropes, meet the wrong sort. Shame about Blackwood.\"\n\n\"Take my advice, friend. Don't be so curious. Curiosity killed more than cats around here.\"\n",
+      "conditionalDialogue": {
+        "clue_warehouse_lights": "Grimsby's expression hardens.\n\n\"Who's been talking? Sullivan? That Irish drunk sees things that aren't there.\"\n\nHe steps closer, menacing.\n\n\"I was home with my woman that night. She'll swear to it. Whatever you think you know, you can't prove nothing.\"\n\n\"Now get out of this warehouse before you have an accident.\"\n",
+        "clue_bribe_ledger": "\"That book don't prove I done nothing.\"\n\nBut there's fear behind Grimsby's bravado now.\n\n\"Look, I just follow orders. Sir Reginald tells me to move cargo, I move cargo. He tells me to handle problems, I handle problems. I'm just a working man.\"\n\n\"You want the real villain? He's sitting in that fancy office counting his money while men like me do his dirty work.\"\n"
+      }
+    },
+    {
+      "id": "widow_blackwood",
+      "name": "Margaret Blackwood",
+      "role": "The Widow",
+      "locationId": "harbor_pier",
+      "description": "A dignified woman in mourning black, standing at the pier where her husband's body was found. Her grief is evident, but so is a quiet determination.\n",
+      "initialDialogue": "\"This is where they found him. Chained like an animal, left for the tide.\"\n\nMrs. Blackwood stares at the dark water.\n\n\"Cornelius knew the risks. He told me, 'Margaret, if something happens, look in the church.' I didn't understand at the time.\"\n\nShe presses a handkerchief to her eyes.\n\n\"He was so close to finishing his investigation. He said he had proof that would bring down men who thought themselves untouchable.\"\n\n\"Whoever did this, they must face justice. For Cornelius. For all the others they've silenced.\"\n",
+      "conditionalDialogue": {
+        "clue_opium_cache": "\"Opium. So that's what was worth my husband's life.\"\n\nMrs. Blackwood's voice is cold with fury.\n\n\"He suspected as much. Said the profits had to be enormous to justify the bribes. Now I understand.\"\n\n\"These men are poisoning our city for profit, and they murdered my husband to keep their secret. Promise me they will hang for this.\"\n"
+      }
+    },
+    {
+      "id": "father_brennan",
+      "name": "Father Thomas Brennan",
+      "role": "Parish Priest",
+      "locationId": "church_sanctuary",
+      "description": "An elderly Irish priest with kind eyes and a gentle manner. Father Brennan runs a mission for sailors and dock workers, offering food, shelter, and absolution to those who need it.\n",
+      "initialDialogue": "\"Mr. Blackwood came to me three days before his death. Not for confession—he wasn't a religious man—but for safekeeping.\"\n\nFather Brennan leads you to a small chapel.\n\n\"He said he had documents that powerful men would kill for. He wanted them hidden somewhere no one would think to look.\"\n\nThe priest opens a hidden compartment behind the altar.\n\n\"He made me promise: if he died, I should give these to whoever came seeking justice. I've been waiting for someone I could trust.\"\n",
+      "conditionalDialogue": {}
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_missing_manifest",
+      "type": "record",
+      "locationId": "customs_office",
+      "characterId": "deputy_marsh",
+      "title": "The Discrepant Manifests",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ OFFICIAL RECORDS ❧\n════════════════════════════════════════════════════════════════════════════\n\nDeputy Marsh produces copies of shipping manifests that Blackwood \nhad been examining:\n\n    HARTLEY SHIPPING CO. - Vessel \"Oriental Star\"\n    Manifest: 50 crates (tea, spices)\n    Cargo log: 70 crates unloaded\n    \n    DISCREPANCY: 20 crates unaccounted\n\nTwenty crates of unknown cargo entered the city without \ninspection or taxation. This is precisely the evidence \nBlackwood was gathering.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Shipping manifests show 20 unaccounted crates from Hartley Shipping—cargo that bypassed customs inspection. Evidence of systematic smuggling.",
+      "prerequisites": [],
+      "reveals": ["shipping_office"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_warehouse_lights",
+      "type": "testimony",
+      "locationId": "dockside_tavern",
+      "characterId": "mick_sullivan",
+      "title": "The Midnight Movements",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ EYEWITNESS ACCOUNT ❧\n════════════════════════════════════════════════════════════════════════════\n\nThe dockworker Mick Sullivan provides crucial testimony:\n\n\"Night of the murder, I saw lights in Warehouse Seven after \nmidnight. Men moving quiet—not the usual crew.\"\n\n\"Recognized Grimsby, Hartley's foreman. They brought Blackwood \nto the pier. He was alive, struggling. Then...\"\n\nMick draws a finger across his throat.\n\n\"Grimsby takes orders from Sir Reginald himself.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Mick Sullivan witnessed Grimsby and others bring Blackwood to the pier on the night of his murder. Grimsby works directly for Sir Reginald Hartley.",
+      "prerequisites": [],
+      "reveals": ["merchant_warehouse", "harbor_pier"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_threat",
+      "type": "testimony",
+      "locationId": "merchant_warehouse",
+      "characterId": "grimsby",
+      "title": "Grimsby's Threat",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ CONFRONTATION ❧\n════════════════════════════════════════════════════════════════════════════\n\nGrimsby's threatening demeanor speaks volumes:\n\n\"Docks are dangerous at night. Accidents happen. Men fall into \nthe water, get tangled in ropes, meet the wrong sort.\"\n\n\"Take my advice, friend. Don't be so curious. Curiosity killed \nmore than cats around here.\"\n\nHis words amount to a barely veiled confession. He knows exactly \nwhat happened to Blackwood—because he made it happen.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Grimsby threatened violence and warned against investigating. His manner suggests direct involvement in Blackwood's murder.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_church_hint",
+      "type": "testimony",
+      "locationId": "harbor_pier",
+      "characterId": "widow_blackwood",
+      "title": "The Widow's Message",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ A CLUE FROM BEYOND ❧\n════════════════════════════════════════════════════════════════════════════\n\nMrs. Blackwood shares her husband's final words to her:\n\n\"Cornelius told me, 'Margaret, if something happens, look in \nthe church.' I didn't understand at the time.\"\n\nBlackwood must have hidden something important at the local \nchurch—insurance against his own murder. Father Brennan at \nthe dockside mission may know more.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Blackwood told his wife to 'look in the church' if something happened to him. He may have hidden evidence there.",
+      "prerequisites": ["clue_warehouse_lights"],
+      "reveals": ["church_sanctuary"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_bribe_ledger",
+      "type": "physical",
+      "locationId": "church_sanctuary",
+      "title": "The Bribe Ledger",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ IRREFUTABLE PROOF ❧\n════════════════════════════════════════════════════════════════════════════\n\nFather Brennan reveals documents Blackwood hid in the church:\n\nA leather-bound ledger containing years of bribery records:\n\n    ╭─────────────────────────────────────────────────╮\n    │  PAYMENTS - CONFIDENTIAL                        │\n    │                                                 │\n    │  Dock Supervisor Harris - £20/month - R.H.      │\n    │  Customs Clerk Wilkins - £15/month - R.H.       │\n    │  Magistrate Thornton - £100/quarter - R.H.      │\n    │  Constable Briggs - £10/month - R.H.            │\n    │                                                 │\n    │  Note: All payments authorized by R.H.          │\n    ╰─────────────────────────────────────────────────╯\n\n\"R.H.\" - Sir Reginald Hartley. This ledger proves he has been \nbribing officials for years to protect his smuggling operation.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "A bribery ledger hidden by Blackwood documents years of payments to officials. All entries are marked 'R.H.' - Sir Reginald Hartley.",
+      "prerequisites": ["clue_church_hint"],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_opium_cache",
+      "type": "physical",
+      "locationId": "merchant_warehouse",
+      "title": "The Hidden Contraband",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ THE SMUGGLED CARGO ❧\n════════════════════════════════════════════════════════════════════════════\n\nBehind false walls in the warehouse, you discover the truth:\n\nDozens of crates marked as \"Chinese Tea - Premium Grade\" but \ncontaining something far more valuable and deadly:\n\n    ╭─────────────────────────────────────────────────╮\n    │  CONTRABAND INVENTORY                           │\n    │                                                 │\n    │  Raw Opium: ~500 pounds                         │\n    │  Estimated Street Value: £50,000+               │\n    │                                                 │\n    │  Marked for distribution to:                    │\n    │  - London                                       │\n    │  - Manchester                                   │\n    │  - Liverpool                                    │\n    ╰─────────────────────────────────────────────────╯\n\nThis is what Blackwood discovered. This is why he had to die.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Hidden in the warehouse: massive opium stockpile worth £50,000+. This is the smuggling operation Blackwood was about to expose.",
+      "prerequisites": ["clue_warehouse_lights"],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_hartley_denial",
+      "type": "testimony",
+      "locationId": "shipping_office",
+      "characterId": "sir_reginald",
+      "title": "Sir Reginald's Arrogance",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ A POWERFUL DENIAL ❧\n════════════════════════════════════════════════════════════════════════════\n\nSir Reginald Hartley dismisses all accusations:\n\n\"I operate a legitimate shipping enterprise. Tea, spices, \ntextiles from the Orient. All properly documented and taxed.\"\n\n\"I am a patron of this city. I fund hospitals, churches, the \norphanage. The very suggestion of impropriety is slanderous.\"\n\n\"I have friends in Parliament! The Lord Mayor dines at my table!\"\n\nHis arrogance suggests a man who believes himself untouchable. \nBut no one is above the law.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Sir Reginald denies all wrongdoing and boasts of powerful connections. His arrogance suggests he believes himself above the law.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    }
+  ],
+  "solution": {
+    "perpetratorId": "sir_reginald",
+    "motive": "PROTECTING AN OPIUM EMPIRE\n\nSir Reginald Hartley built his fortune on a hidden foundation of \ncrime. While his legitimate shipping business provided cover, he \nran a massive opium smuggling operation worth tens of thousands \nof pounds annually.\n\nCustoms Inspector Blackwood discovered the discrepancies in cargo \nmanifests and traced the conspiracy to its source. Had he lived \nto file his report, Hartley would have faced ruin, imprisonment, \nand the destruction of his carefully cultivated reputation.\n\nHartley ordered Grimsby to silence the inspector permanently.\n",
+    "method": "Hartley's enforcer, William Grimsby, ambushed Blackwood at the \ndocks on the night of the murder. With help from two accomplices, \nhe subdued the inspector, cut his throat, and weighted the body \nwith chains to ensure it would sink.\n\nHowever, the rushing tide dislodged the body from its intended \ndeep-water grave, causing it to surface at the pier—and exposing \nthe murder that was meant to look like a disappearance.\n",
+    "keyEvidence": [
+      "clue_bribe_ledger",
+      "clue_warehouse_lights",
+      "clue_missing_manifest"
+    ],
+    "optimalPath": [
+      "customs_office",
+      "dockside_tavern",
+      "harbor_pier",
+      "church_sanctuary",
+      "shipping_office"
+    ]
+  }
+}

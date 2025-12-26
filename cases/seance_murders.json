@@ -1,0 +1,290 @@
+{
+  "id": "seance_murders",
+  "title": "THE SÉANCE MURDERS",
+  "subtitle": "Death Haunts the Parlour of Madame Zelenska",
+  "teaser": "Two deaths in as many weeks at the séances of Madame Zelenska! The faithful whisper of curses and vengeful spirits—but you suspect something far more earthly. Behind the theatrical trickery lies a calculating killer with £200,000 at stake.",
+  "briefing": "═══════════════════════════════════════════════════════════════════════════\n\n                    ❧ SPIRITS OF VENGEANCE ❧\n                        \nTwo deaths in as many weeks at the home of MADAME ZELENSKA, the \nfamed spiritualist medium whose séances have captivated high \nsociety!\n\nFirst, the elderly BARON ASHWORTH collapsed during a summoning \nof his late wife's spirit—his heart gave out, so said the \nphysician. Then, just days ago, his nephew CHARLES ASHWORTH \nfell dead at the very same table, foam upon his lips and terror \nin his eyes.\n\nThe faithful whisper of curses and vengeful spirits. The \nskeptical mutter of coincidence. But YOU suspect something \nfar more earthly: murder most calculated.\n\nThe Ashworth fortune—some £200,000—now passes to the Baron's \nwidowed daughter-in-law. The séance attendees include devoted \nbelievers and bitter skeptics alike. And Madame Zelenska's \npast is shrouded in mystery.\n\nPenetrate the veil of deception, investigator. The spirits \nmay be false, but the danger is very real.\n\n═══════════════════════════════════════════════════════════════════════════\n",
+  "difficulty": 4,
+  "estimatedMinutes": 75,
+  "parVisits": 6,
+  "locations": {
+    "zelenska_parlour": {
+      "id": "zelenska_parlour",
+      "role": "crimeScene",
+      "preferredTags": ["historic=manor", "building=house", "tourism=attraction"],
+      "required": true,
+      "descriptionTemplate": "Madame Zelenska's parlour where the fatal séances were held"
+    },
+    "ashworth_estate": {
+      "id": "ashworth_estate",
+      "role": "witness",
+      "preferredTags": ["building=mansion", "historic=manor", "tourism=attraction"],
+      "fallbackRole": "crimeScene",
+      "required": true,
+      "descriptionTemplate": "the grand estate of the Ashworth family"
+    },
+    "chemist_shop": {
+      "id": "chemist_shop",
+      "role": "information",
+      "preferredTags": ["shop=chemist", "amenity=pharmacy"],
+      "required": true,
+      "descriptionTemplate": "a well-stocked chemist's shop"
+    },
+    "newspaper_office": {
+      "id": "newspaper_office",
+      "role": "information",
+      "preferredTags": ["office=newspaper", "office=company"],
+      "fallbackRole": "authority",
+      "required": true,
+      "descriptionTemplate": "offices of the local gazette"
+    },
+    "solicitor_office": {
+      "id": "solicitor_office",
+      "role": "authority",
+      "preferredTags": ["office=lawyer", "office=company"],
+      "required": true,
+      "descriptionTemplate": "the offices of the Ashworth family solicitor"
+    },
+    "music_hall": {
+      "id": "music_hall",
+      "role": "hidden",
+      "preferredTags": ["amenity=theatre", "amenity=arts_centre"],
+      "required": true,
+      "descriptionTemplate": "a music hall where performers once tread the boards"
+    },
+    "gentleman_club": {
+      "id": "gentleman_club",
+      "role": "atmosphere",
+      "preferredTags": ["amenity=club", "leisure=club"],
+      "fallbackRole": "information",
+      "required": false,
+      "descriptionTemplate": "an exclusive gentleman's club"
+    },
+    "cemetery": {
+      "id": "cemetery",
+      "role": "hidden",
+      "preferredTags": ["landuse=cemetery", "amenity=grave_yard"],
+      "required": false,
+      "descriptionTemplate": "the cemetery where Lady Ashworth lies buried"
+    }
+  },
+  "characters": [
+    {
+      "id": "madame_zelenska",
+      "name": "Madame Zelenska",
+      "role": "Spiritualist Medium",
+      "locationId": "zelenska_parlour",
+      "description": "An exotic woman of uncertain age, draped in purple velvet and silver jewelry. Her accent is vaguely Eastern European, her manner theatrical. Her dark eyes seem to see more than they should.\n",
+      "initialDialogue": "\"The spirits are... disturbed by your presence, investigator.\"\n\nMadame Zelenska speaks in hushed, dramatic tones.\n\n\"I am merely a conduit between worlds. What happened to Baron Ashworth and his nephew was the work of forces beyond mortal understanding.\"\n\nShe gestures to the darkened parlour.\n\n\"Lady Ashworth's spirit was angry that night. She spoke of betrayal, of secrets. The Baron clutched his heart and fell. Young Charles came seeking answers... and found only death.\"\n\n\"I cannot control what the spirits reveal or what vengeance they seek. I am but the vessel.\"\n",
+      "conditionalDialogue": {
+        "clue_stage_past": "Madame Zelenska's composure cracks.\n\n\"That was... another life. Maggie Bell died years ago. I am Madame Zelenska now.\"\n\nShe sighs, dropping the accent briefly.\n\n\"Yes, I was a stage magician. Yes, I know tricks—misdirection, illusion, suggestion. But I also have genuine gifts. The two are not mutually exclusive.\"\n\n\"I did not kill those men. My séances are theatrical, but harmless. Someone used my performance as cover for murder.\"\n",
+        "clue_poison_purchase": "\"That was not me! I have never been to that chemist!\"\n\nZelenska's denial is fierce.\n\n\"Someone is trying to make me the scapegoat. Think about it—who benefits? Not me! If my clients die, my reputation is ruined!\"\n\n\"Someone else bought that poison and described a woman like me. Ask yourself: who knew about my past as a performer? Who knew enough to frame me?\"\n"
+      }
+    },
+    {
+      "id": "victoria_ashworth",
+      "name": "Victoria Ashworth",
+      "role": "The Widow",
+      "locationId": "ashworth_estate",
+      "description": "A beautiful woman in her thirties, Victoria was married to the Baron's son Edward, who died in a hunting accident two years ago. She wears black, but her grief seems well-rehearsed.\n",
+      "initialDialogue": "\"Father Ashworth's death was a shock, of course. And poor Charles... so young.\"\n\nVictoria dabs her eyes with a handkerchief.\n\n\"I tried to discourage the séances. Summoning the dead is unwholesome. But the Baron was obsessed with contacting his late wife, and Charles followed wherever his uncle led.\"\n\nShe looks away.\n\n\"Now I am alone in this great house. The estate falls to me—Edward's widow—as the Baron's only surviving connection to his son.\"\n\n\"It is a burden I never sought.\"\n",
+      "conditionalDialogue": {
+        "clue_will_change": "Victoria's mask of grief slips.\n\n\"What are you implying? That I... that I killed for money?\"\n\nShe composes herself.\n\n\"The Baron was going to change his will—that's true. He wanted to leave everything to Charles. But he died before he could.\"\n\n\"That's convenient for me, I admit. But convenience is not proof of murder. Many people had reason to want the Baron and Charles dead.\"\n",
+        "clue_arsenic_symptoms": "\"You're accusing me of poisoning them?\"\n\nVictoria rises, indignant.\n\n\"I was at those séances! I held hands with the other sitters! How could I possibly have administered poison without being seen?\"\n\n\"Madame Zelenska controls everything in that room. The darkness, the candles, who sits where. If anyone poisoned them, it was her.\"\n"
+      }
+    },
+    {
+      "id": "dr_hartley",
+      "name": "Dr. James Hartley",
+      "role": "Family Physician",
+      "locationId": "chemist_shop",
+      "description": "The Ashworth family physician for twenty years, Dr. Hartley is a portly man with mutton chops and an air of professional competence. He examined both bodies.\n",
+      "initialDialogue": "\"I certified the Baron's death as heart failure. It seemed... consistent with his age and the excitement of the séance.\"\n\nDr. Hartley shifts uncomfortably.\n\n\"But Charles? A healthy young man of thirty does not simply die of fright. When I examined him, I noticed... irregularities.\"\n\nHe lowers his voice.\n\n\"Constricted pupils. Excessive salivation. A bitter almond scent about the lips. These are not symptoms of a weak heart.\"\n\n\"I believe Charles Ashworth was poisoned. And now I wonder if the Baron was as well.\"\n",
+      "conditionalDialogue": {
+        "clue_arsenic_symptoms": "\"You've confirmed my suspicions then.\"\n\nDr. Hartley nods gravely.\n\n\"Arsenic. The classic poison—nearly undetectable in small doses, easily administered in food or drink.\"\n\n\"Madame Zelenska serves tea before her séances. It would be simple to poison a single cup. But she would need access to the poison and a motive.\"\n\n\"Unless... someone else prepared the tea that night.\"\n",
+        "clue_poison_purchase": "\"A woman matching Zelenska's description? Interesting, but not conclusive.\"\n\nThe doctor frowns.\n\n\"Theatrical costumes and wigs are easily obtained. Anyone could disguise themselves to make a purchase.\"\n\n\"Consider who benefits from the deaths AND from Zelenska taking the blame. That is your true murderer.\"\n"
+      }
+    },
+    {
+      "id": "edgar_crane",
+      "name": "Edgar Crane",
+      "role": "Newspaper Reporter",
+      "locationId": "newspaper_office",
+      "description": "A sharp-eyed young journalist who has been investigating the spiritualism craze. Crane has made it his mission to expose fraudulent mediums.\n",
+      "initialDialogue": "\"Zelenska? She's a fraud, like all the rest. I've been investigating her for months.\"\n\nCrane spreads newspaper clippings across his desk.\n\n\"Real name: Margaret Bell. Performed as 'The Amazing Maggie' in music halls across the north. Stage magic, mentalism, the whole routine.\"\n\nHe taps a faded photograph.\n\n\"She reinvented herself as Madame Zelenska five years ago. The foreign accent, the mysterious past—all fabricated.\"\n\n\"But is she a murderer? That I cannot say. Her tricks are designed to fleece the gullible, not kill them.\"\n",
+      "conditionalDialogue": {
+        "clue_stage_past": "\"So you've discovered her secret identity. Good work.\"\n\nCrane leans forward eagerly.\n\n\"The question is: does this past make her a killer, or just a con artist? Stage magicians are skilled at misdirection and sleight of hand—perfect for poisoning.\"\n\n\"But she had no obvious motive. The Ashworths were her best clients. Their deaths hurt her business.\"\n\n\"Unless she was paid by someone else...\"\n",
+        "clue_victoria_affair": "Crane's eyes widen.\n\n\"Victoria Ashworth and the nephew? Now THAT is interesting.\"\n\nHe scribbles notes furiously.\n\n\"So Victoria had a motive to kill the Baron—inheritance. And Charles—to silence him about the affair.\"\n\n\"A widow who murders her way to a fortune. That's a story worth printing.\"\n"
+      }
+    },
+    {
+      "id": "mr_pemberton",
+      "name": "Mr. Archibald Pemberton",
+      "role": "Family Solicitor",
+      "locationId": "solicitor_office",
+      "description": "A precise, elderly solicitor who has handled the Ashworth family's affairs for decades. He guards their secrets jealously—most of them.\n",
+      "initialDialogue": "\"The Ashworth estate is... complicated.\"\n\nMr. Pemberton removes his spectacles and polishes them carefully.\n\n\"The Baron's will names his daughter-in-law Victoria as primary beneficiary—some £200,000 in property and investments. This was conditional on her remaining unmarried.\"\n\n\"However, Baron Ashworth came to me just days before his death. He wished to change the will, naming his nephew Charles as heir instead.\"\n\nHe sighs.\n\n\"The new will was never signed. Victoria inherits everything.\"\n",
+      "conditionalDialogue": {
+        "clue_will_change": "\"Yes, the timing is... suggestive.\"\n\nPemberton chooses his words carefully.\n\n\"The Baron was quite agitated when he visited. He said he had learned something disturbing about Victoria—something that made him question her worthiness as heir.\"\n\n\"He would not tell me what it was. Only that Charles had discovered the truth and shared it with him.\"\n\n\"Now both men are dead, and whatever secret they learned died with them.\"\n",
+        "clue_victoria_affair": "Pemberton closes his eyes.\n\n\"So that was the Baron's discovery. Victoria and Charles...\"\n\n\"This explains everything. The Baron learned of the affair and decided to disinherit Victoria. Charles must have felt guilty and confessed.\"\n\n\"Victoria had motive to kill them both—before the will could be changed, and to silence Charles forever.\"\n"
+      }
+    },
+    {
+      "id": "molly_shaw",
+      "name": "Molly Shaw",
+      "role": "Former Stage Assistant",
+      "locationId": "music_hall",
+      "description": "A former stage performer now working in a music hall, Molly was 'The Amazing Maggie's' assistant years ago. She knows all the secrets of the trade.\n",
+      "initialDialogue": "\"Maggie Bell? Haven't heard that name in years.\"\n\nMolly laughs, a tired sound.\n\n\"We worked together on the northern circuit. She was brilliant—best mentalist I ever saw. Could read a mark from across the room, tell them things about themselves they'd forgotten.\"\n\nShe shrugs.\n\n\"Then she got ambitious. Decided fake accents and séances paid better than honest stage work. Can't blame her, really.\"\n\n\"Is she in trouble? Maggie was many things, but never violent. Her game was always the long con—make them love you, then take their money.\"\n",
+      "conditionalDialogue": {
+        "clue_stage_past": "\"So she's been exposed? About time, I suppose.\"\n\nMolly considers.\n\n\"Maggie's tricks relied on preparation. She'd research her clients beforehand—learn their secrets, their losses, what they wanted to hear.\"\n\n\"If someone died at her séance, either she's gotten sloppy... or someone used her methods against her.\"\n\n\"Anyone who knew her stage techniques could set her up.\"\n"
+      }
+    },
+    {
+      "id": "chemist_thomas",
+      "name": "Mr. Thomas Wright",
+      "role": "Chemist",
+      "locationId": "chemist_shop",
+      "description": "The proprietor of a well-respected chemist's shop, Mr. Wright keeps meticulous records of all purchases—especially the dangerous ones.\n",
+      "initialDialogue": "\"I am required by law to maintain records of all poison sales.\"\n\nMr. Wright produces a leather-bound ledger.\n\n\"Let me see... arsenic purchases in the past month. Here we are.\"\n\nHe runs his finger down the page.\n\n\"Three days before the first death: arsenic trioxide, two ounces. Purchased by a woman—foreign accent, dark hair, purple dress.\"\n\nHe frowns.\n\n\"She gave the name 'Mrs. Smith' and claimed it was for rats. I had my doubts, but she had money and seemed respectable enough.\"\n",
+      "conditionalDialogue": {
+        "clue_victoria_affair": "\"Wait—you say the buyer might have been in disguise?\"\n\nMr. Wright thinks carefully.\n\n\"Now you mention it, she wore heavy makeup and a veil. Claimed sensitivity to light.\"\n\n\"If someone wanted to impersonate Madame Zelenska to make a purchase... they could have. The accent was thick, perhaps too thick. Theatrical.\"\n\n\"I cannot be certain who truly bought that poison.\"\n"
+      }
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_two_deaths",
+      "type": "physical",
+      "locationId": "zelenska_parlour",
+      "title": "Scene of Two Deaths",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ THE FATAL PARLOUR ❧\n════════════════════════════════════════════════════════════════════════════\n\nThe séance room is draped in dark velvet, lit only by candles. \nA round table dominates the center, surrounded by eight chairs.\n\nZelenska explains the ritual: clients hold hands around the \ntable while she summons spirits. Tea is served beforehand.\n\nNotably, Zelenska sits across from the door, unable to see \nwho enters the room behind her during preparation. Anyone \ncould slip something into a teacup.\n\nTwo men died at this table. The spirits are silent on who \nis responsible.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Two deaths at the same séance table. Tea is served before each session. The medium sits with her back to the preparation area.",
+      "prerequisites": [],
+      "reveals": ["ashworth_estate"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_arsenic_symptoms",
+      "type": "testimony",
+      "locationId": "chemist_shop",
+      "characterId": "dr_hartley",
+      "title": "Signs of Poisoning",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ MEDICAL EVIDENCE ❧\n════════════════════════════════════════════════════════════════════════════\n\nDr. Hartley describes what he observed in Charles Ashworth's body:\n\n    ╭─────────────────────────────────────────────────╮\n    │  SYMPTOMS OBSERVED                              │\n    │                                                 │\n    │  - Constricted pupils                           │\n    │  - Excessive salivation                         │\n    │  - Bitter almond scent on lips                  │\n    │  - Gastric distress (pre-mortem)                │\n    │  - Rapid onset of symptoms                      │\n    ╰─────────────────────────────────────────────────╯\n\n\"These are classic signs of arsenic poisoning. I suspect the \nBaron's death was the same, but I did not examine him as \ncarefully. Someone poisoned these men.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Dr. Hartley confirms Charles showed classic arsenic poisoning symptoms. The Baron likely died the same way.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_will_change",
+      "type": "record",
+      "locationId": "solicitor_office",
+      "characterId": "mr_pemberton",
+      "title": "The Unsigned Will",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ LEGAL MATTERS ❧\n════════════════════════════════════════════════════════════════════════════\n\nMr. Pemberton reveals critical information about the Ashworth will:\n\n\"Baron Ashworth came to me days before his death. He wished \nto change his will entirely—removing Victoria as beneficiary \nand naming his nephew Charles instead.\"\n\n    Current Will: Victoria Ashworth - £200,000\n    Proposed Will: Charles Ashworth - £200,000\n    \n    STATUS: Proposed will NEVER SIGNED\n    \n    RESULT: Victoria inherits everything\n\n\"The Baron said he had learned something disturbing about \nVictoria. Now he and Charles are dead, and she inherits all.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Baron planned to disinherit Victoria and leave everything to Charles. He died before signing. Victoria inherits £200,000.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_stage_past",
+      "type": "record",
+      "locationId": "newspaper_office",
+      "characterId": "edgar_crane",
+      "title": "The Medium Unmasked",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ A HIDDEN HISTORY ❧\n════════════════════════════════════════════════════════════════════════════\n\nEdgar Crane produces evidence of Zelenska's past:\n\n    ╭─────────────────────────────────────────────────╮\n    │  THE AMAZING MAGGIE - Music Hall Performer      │\n    │                                                 │\n    │  Real Name: Margaret Bell                       │\n    │  Born: Manchester, 1845                         │\n    │  Career: Stage mentalist, illusionist           │\n    │  Active: Northern circuit, 1865-1880            │\n    │                                                 │\n    │  \"Reinvented\" as Madame Zelenska, 1881          │\n    ╰─────────────────────────────────────────────────╯\n\n\"She's a fraud—a skilled one, but a fraud nonetheless. Her \nséances are elaborate stage shows, not genuine spirit contact.\"\n\nBut does being a fraud make her a murderer?\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Madame Zelenska is actually Margaret Bell, a former stage magician. Her séances are elaborate performances, not genuine.",
+      "prerequisites": [],
+      "reveals": ["music_hall"],
+      "isEssential": false,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_poison_purchase",
+      "type": "record",
+      "locationId": "chemist_shop",
+      "characterId": "chemist_thomas",
+      "title": "The Arsenic Purchase",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ POISON REGISTER ❧\n════════════════════════════════════════════════════════════════════════════\n\nMr. Wright's meticulous records reveal a purchase:\n\n    ╭─────────────────────────────────────────────────╮\n    │  ARSENIC SALE - CONFIDENTIAL                    │\n    │                                                 │\n    │  Date: Three days before Baron's death          │\n    │  Substance: Arsenic trioxide, 2 oz              │\n    │  Purchaser: \"Mrs. Smith\"                        │\n    │  Description: Foreign accent, dark hair,        │\n    │               purple dress, heavy veil          │\n    │  Stated Purpose: Rat poison                     │\n    ╰─────────────────────────────────────────────────╯\n\nThe description matches Madame Zelenska perfectly. But the \nchemist notes the accent seemed \"too theatrical\" and the \nbuyer wore heavy makeup and a veil.\n\nWas it truly Zelenska—or someone impersonating her?\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Arsenic purchased days before the first death by a woman matching Zelenska's description—but possibly in disguise.",
+      "prerequisites": ["clue_arsenic_symptoms"],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_victoria_affair",
+      "type": "testimony",
+      "locationId": "gentleman_club",
+      "title": "The Scandalous Secret",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ SOCIETY WHISPERS ❧\n════════════════════════════════════════════════════════════════════════════\n\nAt the gentleman's club, you overhear gossip about the Ashworths:\n\n\"Everyone knows about Victoria and young Charles. Started \nbefore Edward even died—some say that hunting 'accident' was \nno accident at all.\"\n\nAnother member chimes in:\n\n\"The Baron discovered the affair just before he died. His \nvalet said he was furious—called Victoria a 'serpent' and \nswore to cut her off without a penny.\"\n\n\"And now both the Baron and Charles are dead. Convenient, \nwouldn't you say?\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Victoria was having an affair with Charles. The Baron discovered this and planned to disinherit her. Both men who knew are now dead.",
+      "prerequisites": ["clue_will_change"],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_disguise_skills",
+      "type": "testimony",
+      "locationId": "music_hall",
+      "characterId": "molly_shaw",
+      "title": "The Art of Disguise",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ THEATRICAL KNOWLEDGE ❧\n════════════════════════════════════════════════════════════════════════════\n\nMolly Shaw reveals insider knowledge:\n\n\"Maggie's act relied on preparation—knowing her marks before \nthey walked in. Anyone who knew her methods could use them.\"\n\nShe demonstrates with makeup and a wig from the costume room.\n\n\"See? Takes five minutes to transform. The right dress, the \nright accent, and anyone could pass for Zelenska at a chemist's \nshop.\"\n\n\"If someone wanted to frame her for murder, they could have \nbought the poison in disguise and made sure witnesses described \nsomeone matching Madame Zelenska.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Stage performers can easily disguise themselves. Someone could have impersonated Zelenska to buy the poison and frame her.",
+      "prerequisites": ["clue_stage_past"],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_victoria_motive",
+      "type": "testimony",
+      "locationId": "ashworth_estate",
+      "characterId": "victoria_ashworth",
+      "title": "Victoria's Defense",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ THE WIDOW PROTESTS ❧\n════════════════════════════════════════════════════════════════════════════\n\nVictoria Ashworth attempts to deflect suspicion:\n\n\"Yes, I inherit the fortune. Yes, the Baron was going to \nchange his will. Yes, I was at both séances.\"\n\nShe meets your gaze defiantly.\n\n\"But think logically. I held hands with the other sitters \nduring the séance. I could not have slipped poison into \nanyone's cup without being seen.\"\n\n\"Madame Zelenska controls everything in that room. She serves \nthe tea. She decides where people sit. She dims the lights.\"\n\n\"If you want a murderer, look to her.\"\n\nA clever defense—but perhaps too clever?\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Victoria claims she couldn't have poisoned anyone because she held hands during the séance. She blames Zelenska—but her alibi feels rehearsed.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": true
+    },
+    {
+      "id": "clue_cemetery_evidence",
+      "type": "physical",
+      "locationId": "cemetery",
+      "title": "A Fresh Grave Disturbed",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ AMONG THE DEAD ❧\n════════════════════════════════════════════════════════════════════════════\n\nAt Lady Ashworth's grave, you notice something peculiar:\n\nFresh footprints in the mud, too small for a man's boot. \nRoyal purple thread caught on the iron railing—fabric from \nan expensive dress.\n\nNearby, half-buried in leaves, a small bottle labeled \n\"Arsenic - Poison\" with traces of white powder inside.\n\nSomeone came here recently to dispose of evidence. The \npurple thread matches fabric favored by Madame Zelenska... \nor by someone wishing to implicate her.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Empty poison bottle found near Lady Ashworth's grave, along with purple thread. Someone disposed of evidence here.",
+      "prerequisites": ["clue_poison_purchase"],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    }
+  ],
+  "solution": {
+    "perpetratorId": "victoria_ashworth",
+    "motive": "GREED, SECRETS, AND SURVIVAL\n\nVictoria Ashworth's carefully constructed life was about to collapse.\n\nHer affair with Charles had been discovered by Baron Ashworth, who \nswore to disinherit her immediately. Worse, Charles—overcome with \nguilt—planned to confess everything publicly.\n\nFacing the loss of £200,000 and social ruin, Victoria chose murder.\n\nShe killed the Baron first, using poison slipped into his tea before \nthe séance. When Charles threatened to expose her, he too had to die. \nShe bought the arsenic while disguised as Madame Zelenska, ensuring \nthe medium would take the blame.\n\nTwo murders. One fortune. And a spiritualist to hang for it.\n",
+    "method": "Victoria exploited her knowledge of Zelenska's theatrical past to \ncreate the perfect frame.\n\nShe purchased arsenic while disguised as the medium—foreign accent, \npurple dress, heavy veil. She slipped the poison into the Baron's \ntea before the séance, using the dimmed lights and ritual hand-holding \nto establish her 'alibi.'\n\nCharles died the same way a week later—poisoned tea, another séance, \nanother 'supernatural' death.\n\nVictoria disposed of the poison bottle at Lady Ashworth's grave, \ntrusting that no one would look there. She nearly got away with it.\n",
+    "keyEvidence": [
+      "clue_will_change",
+      "clue_victoria_affair",
+      "clue_poison_purchase",
+      "clue_arsenic_symptoms"
+    ],
+    "optimalPath": [
+      "zelenska_parlour",
+      "chemist_shop",
+      "solicitor_office",
+      "newspaper_office",
+      "gentleman_club",
+      "ashworth_estate"
+    ]
+  }
+}
