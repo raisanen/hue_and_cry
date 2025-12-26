@@ -1,0 +1,73 @@
+name: hue_and_cry
+description: "A location-based detective game inspired by Sherlock Holmes Consulting Detective."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.0
+  
+  # Maps
+  flutter_map: ^6.0.0
+  latlong2: ^0.9.0
+  
+  # Location & Permissions
+  geolocator: ^10.0.0
+  permission_handler: ^11.0.0
+  
+  # HTTP
+  dio: ^5.3.0
+  
+  # Local Storage
+  hive: ^2.2.0
+  hive_flutter: ^1.1.0
+  
+  # Data Models
+  freezed_annotation: ^2.4.0
+  json_annotation: ^4.8.0
+  
+  # Navigation
+  go_router: ^12.0.0
+  
+  # Typography
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  
+  # Code Generation
+  build_runner: ^2.4.0
+  freezed: ^2.4.0
+  json_serializable: ^6.7.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/images/ornaments/
+    - assets/images/engravings/
+  
+  fonts:
+    - family: OldStandardTT
+      fonts:
+        - asset: assets/fonts/OldStandardTT/OldStandardTT-Regular.ttf
+        - asset: assets/fonts/OldStandardTT/OldStandardTT-Italic.ttf
+          style: italic
+        - asset: assets/fonts/OldStandardTT/OldStandardTT-Bold.ttf
+          weight: 700
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf
+          weight: 900
