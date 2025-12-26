@@ -267,7 +267,7 @@ Make the case content atmospheric and engaging - this is the demo case that will
 
 ---
 
-## Prompt 8: Game Logic Service
+## Prompt 8: Game Logic Service -- DONE
 
 ```
 Create the game logic service in lib/services/game_service.dart:
