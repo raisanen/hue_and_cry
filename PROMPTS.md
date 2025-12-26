@@ -322,7 +322,7 @@ Write comprehensive tests for all game logic.
 
 ---
 
-## Prompt 9: Location Service
+## Prompt 9: Location Service -- DONE
 
 ```
 Create the GPS location service in lib/services/location_service.dart:
