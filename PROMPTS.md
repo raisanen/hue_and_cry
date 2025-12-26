@@ -359,7 +359,7 @@ Handle the case where user moves - update provider when position changes signifi
 
 ---
 
-## Prompt 10: Basic UI - App Shell, Theme, and Navigation
+## Prompt 10: Basic UI - App Shell, Theme, and Navigation -- DONE
 
 ```
 Create the app shell, Police Gazette theme, and navigation structure:
