@@ -221,12 +221,12 @@ Write tests with mock POI data covering:
 
 ---
 
-## Prompt 7: Sample Case Data
+## Prompt 7: Sample Case Data -- DONE
 
 ```
 Create a complete sample case in lib/data/cases/vanishing_violinist.dart:
 
-Implement "The Vanishing Violinist" case as specified in our earlier conversation:
+Generate and implement "The Vanishing Violinist" case:
 
 1. Case overview:
    - Violinist Maria Lindgren disappeared after a performance
