@@ -11,6 +11,7 @@ import '../services/game_service.dart';
 /// Key used to store game state in Hive.
 const String _gameStateBoxName = 'game_state';
 const String _activeGameStateKey = 'active_game';
+const String _activeBoundCaseKey = 'active_bound_case';
 
 /// Provider for the GameService.
 final gameServiceProvider = Provider<GameService>((ref) {
@@ -21,6 +22,57 @@ final gameServiceProvider = Provider<GameService>((ref) {
 final gameStateBoxProvider = Provider<Box<String>>((ref) {
   return Hive.box<String>(_gameStateBoxName);
 });
+
+/// Provider for the active bound case (persisted).
+final activeBoundCaseProvider =
+    StateNotifierProvider<ActiveBoundCaseNotifier, BoundCase?>((ref) {
+  final box = ref.watch(gameStateBoxProvider);
+  return ActiveBoundCaseNotifier(box);
+});
+
+/// Notifier that manages the active bound case with Hive persistence.
+class ActiveBoundCaseNotifier extends StateNotifier<BoundCase?> {
+  final Box<String> _box;
+
+  ActiveBoundCaseNotifier(this._box) : super(null) {
+    _loadPersistedState();
+  }
+
+  void _loadPersistedState() {
+    final jsonString = _box.get(_activeBoundCaseKey);
+    if (jsonString != null) {
+      try {
+        final json = jsonDecode(jsonString) as Map<String, dynamic>;
+        state = BoundCase.fromJson(json);
+      } catch (e) {
+        // If parsing fails, clear the corrupted data
+        _box.delete(_activeBoundCaseKey);
+        state = null;
+      }
+    }
+  }
+
+  void _persistState() {
+    if (state != null) {
+      final jsonString = jsonEncode(state!.toJson());
+      _box.put(_activeBoundCaseKey, jsonString);
+    } else {
+      _box.delete(_activeBoundCaseKey);
+    }
+  }
+
+  /// Sets the active bound case.
+  void setBoundCase(BoundCase boundCase) {
+    state = boundCase;
+    _persistState();
+  }
+
+  /// Clears the active bound case.
+  void clear() {
+    state = null;
+    _persistState();
+  }
+}
 
 /// Notifier that manages the active game state with Hive persistence.
 class ActiveGameStateNotifier extends StateNotifier<GameState?> {

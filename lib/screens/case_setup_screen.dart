@@ -335,6 +335,9 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
 
     // Use Future.microtask to avoid modifying provider during widget tree build
     Future.microtask(() {
+      // Store the bound case for the map screen to use
+      ref.read(activeBoundCaseProvider.notifier).setBoundCase(_boundCase!);
+
       // Initialize game state
       ref.read(activeGameStateProvider.notifier).startCase(_boundCase!);
 

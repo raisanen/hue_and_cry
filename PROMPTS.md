@@ -500,7 +500,7 @@ Create a LoadingStep widget for consistent step display with gazette aesthetic.
 
 ---
 
-## Prompt 13: Map Screen
+## Prompt 13: Map Screen -- DONE
 
 ```
 Create the main map screen in lib/screens/map_screen.dart:
