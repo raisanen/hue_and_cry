@@ -4,7 +4,7 @@ Use these prompts in sequence. Each builds on the previous. Copy-paste one at a 
 
 ---
 
-## Prompt 1: Project Setup
+## Prompt 1: Project Setup -- DONE
 
 ```
 1. Make sure this project is targeting Android & Web.
@@ -36,7 +36,7 @@ Use these prompts in sequence. Each builds on the previous. Copy-paste one at a 
 
 ---
 
-## Prompt 2: Data Models
+## Prompt 2: Data Models -- DONE
 
 ```
 Create all the data models for Hue and Cry using Freezed for immutability and JSON serialization.
