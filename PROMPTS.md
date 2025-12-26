@@ -654,7 +654,7 @@ Make this feel like a physical scrapbook of collected evidence.
 
 ---
 
-## Prompt 16: Solution Screen
+## Prompt 16: Solution Screen -- DONE
 
 ```
 Create the solution/accusation screen in lib/screens/solution_screen.dart:
