@@ -416,7 +416,7 @@ Verify navigation works and theme is applied consistently.
 
 ---
 
-## Prompt 11: Home Screen
+## Prompt 11: Home Screen -- DONE
 
 ```
 Create the home screen in lib/screens/home_screen.dart with Police Gazette styling:
