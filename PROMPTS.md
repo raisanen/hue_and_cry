@@ -146,7 +146,7 @@ Write unit tests with mocked Dio responses.
 
 ---
 
-## Prompt 5: Classification Service
+## Prompt 5: Classification Service -- DONE
 
 ```
 Create the POI classification service in lib/services/classification_service.dart:
