@@ -295,8 +295,15 @@ class GameService {
     String accusedId,
     BoundCase boundCase,
   ) {
+
     final template = boundCase.template;
     final solution = template.solution;
+
+    // Debug logging
+    // ignore: avoid_print
+    print('[submitSolution] accusedId: '
+      '[33m$accusedId[0m, solution.perpetratorId: '
+      '[36m${solution.perpetratorId}[0m');
 
     // Check if correct
     final isCorrect = accusedId == solution.perpetratorId;
