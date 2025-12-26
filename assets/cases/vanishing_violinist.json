@@ -1,0 +1,233 @@
+{
+  "id": "vanishing_violinist",
+  "title": "THE VANISHING VIOLINIST",
+  "subtitle": "A Most Peculiar Disappearance Confounds the Authorities",
+  "briefing": "═══════════════════════════════════════════════════════════════════════════\n\n                    ❧ EXTRAORDINARY DISAPPEARANCE ❧\n                        \nThree days past, the acclaimed violinist MARIA LINDGREN was last seen \ndeparting a private engagement at the residence of Lord Ashworth. The \ncelebrated musician, known throughout the city for her haunting \nperformances of Paganini's Caprices, has vanished without trace.\n\nHer husband, Mr. ERIK LINDGREN, a merchant of respectable standing, has \nposted a reward of FIFTY POUNDS for information leading to her safe \nreturn. \"My beloved wife would never abandon her music,\" Mr. Lindgren \nstated to this correspondent, his voice thick with apparent grief.\n\nThe constabulary report no signs of foul play at the scene, yet the \ncircumstances remain passing strange. Mrs. Lindgren's prized Stradivarius \nviolin was found abandoned in the carriage she had engaged for the \nevening—an instrument she was known never to let leave her sight.\n\nINVESTIGATORS ARE ENCOURAGED to make enquiries at establishments \nfrequented by the missing woman, and to interview those who knew \nher habits most intimately.\n\nThe game is afoot!\n\n═══════════════════════════════════════════════════════════════════════════\n",
+  "difficulty": 2,
+  "estimatedMinutes": 45,
+  "parVisits": 4,
+  "locations": {
+    "cafe_practice": {
+      "id": "cafe_practice",
+      "role": "information",
+      "preferredTags": ["amenity=cafe", "amenity=restaurant"],
+      "required": true,
+      "descriptionTemplate": "a quiet establishment where artists gather"
+    },
+    "orchestra_hall": {
+      "id": "orchestra_hall",
+      "role": "suspectWork",
+      "preferredTags": ["amenity=theatre", "amenity=arts_centre"],
+      "fallbackRole": "atmosphere",
+      "required": true,
+      "descriptionTemplate": "the grand hall where the orchestra rehearses"
+    },
+    "husband_office": {
+      "id": "husband_office",
+      "role": "suspectWork",
+      "preferredTags": ["office=company", "office=estate_agent", "shop=trade"],
+      "required": true,
+      "descriptionTemplate": "the husband's place of business"
+    },
+    "park_meeting": {
+      "id": "park_meeting",
+      "role": "hidden",
+      "preferredTags": ["leisure=park", "leisure=garden"],
+      "fallbackRole": "crimeScene",
+      "required": true,
+      "descriptionTemplate": "a secluded spot away from prying eyes"
+    },
+    "police_station": {
+      "id": "police_station",
+      "role": "authority",
+      "preferredTags": ["amenity=police", "amenity=townhall"],
+      "fallbackRole": "information",
+      "required": false,
+      "descriptionTemplate": "the local constabulary offices"
+    },
+    "rival_apartment": {
+      "id": "rival_apartment",
+      "role": "witness",
+      "preferredTags": ["building=apartments", "building=residential"],
+      "fallbackRole": "atmosphere",
+      "required": false,
+      "descriptionTemplate": "lodgings of dubious reputation"
+    },
+    "antique_shop": {
+      "id": "antique_shop",
+      "role": "atmosphere",
+      "preferredTags": ["shop=antiques", "shop=pawnbroker"],
+      "required": false,
+      "descriptionTemplate": "a dusty emporium of curiosities"
+    }
+  },
+  "characters": [
+    {
+      "id": "jan_barista",
+      "name": "Jan Kowalski",
+      "role": "Proprietor",
+      "locationId": "cafe_practice",
+      "description": "A stout fellow of Polish extraction, with a magnificent mustache \nand an apron perpetually stained with coffee. Jan has operated \nthis establishment for fifteen years and knows every regular \npatron's habits with uncanny precision.\n",
+      "initialDialogue": "\"Ah, you ask about Mrs. Lindgren! Such a tragedy, such a tragedy.\"\n\nJan polishes a cup with practiced efficiency, his eyes growing distant.\n\n\"Every morning, nine o'clock sharp, she would take her usual table \nby the window. Always ordered a schwarzer kaffee—black coffee, \nno sugar. Said it kept her fingers nimble for practice.\"\n\nHe leans closer, lowering his voice conspiratorially.\n\n\"But these past weeks? Something was troubling her. I could see it \nin her eyes. She was distracted, always looking at the door as if \nexpecting someone. And there were letters—she would read them and \ngrow pale as a ghost.\"\n\n\"If you want to know her schedule, I kept it written down. She \nasked me to, in case anyone came looking for her...\"\n",
+      "conditionalDialogue": {
+        "clue_schedule": "\"You found the schedule, yes? Good, good.\"\n\nJan's expression darkens.\n\n\"There is something else I should tell you. Three days before she \nvanished, I heard them arguing—Mrs. Lindgren and her husband. \nRight here, at that very table.\"\n\nHe gestures to a corner booth.\n\n\"Mr. Lindgren, he was shouting about money. About debts. I heard \nhim say 'the policy will solve everything.' She was crying, \nasking him what he meant. Then he grabbed her arm—not gentle, \nyou understand—and they left.\"\n\n\"I should have said something to the police, but...\" He shrugs \nhelplessly. \"Who listens to a coffee man?\"\n",
+        "clue_park_witness": "\"You spoke to the flower seller? Then you know she was alive \nafter everyone thought she vanished!\"\n\nJan slaps the counter triumphantly.\n\n\"I knew something was wrong. The husband, he came here the day \nafter she 'disappeared,' asking if she had said anything to me. \nHis eyes...\" Jan shudders. \"Cold. Like a dead fish. Not the eyes \nof a worried husband.\"\n"
+      }
+    },
+    {
+      "id": "henrik_conductor",
+      "name": "Henrik Berg",
+      "role": "Principal Conductor",
+      "locationId": "orchestra_hall",
+      "description": "A tall, imperious gentleman with silver hair swept back from a \nhigh forehead. Maestro Berg carries himself with the confidence \nof a man who has conducted before crowned heads of Europe. His \nhands, when not holding a baton, move constantly as if directing \ninvisible musicians.\n",
+      "initialDialogue": "\"Mrs. Lindgren's disappearance is a catastrophe—for art, you \nunderstand. Her technique was extraordinary. Irreplaceable.\"\n\nThe Maestro paces before the empty orchestra pit, his footsteps \nechoing in the cavernous hall.\n\n\"She joined our company three seasons past. From the first \nrehearsal, I knew she was destined for greatness. Such passion! \nSuch precision!\"\n\nHe pauses, turning to face you with penetrating grey eyes.\n\n\"As for her personal life, I make it a policy not to involve \nmyself in such matters. Musicians are temperamental creatures. \nDrama follows them like shadow follows light.\"\n\n\"Though I will say this—she seemed troubled of late. Distracted \nduring rehearsals. Most unlike her.\"\n",
+      "conditionalDialogue": {
+        "clue_argument": "The Maestro's composure cracks slightly.\n\n\"Arguments with her husband? I am not surprised. The man is \na philistine who understood nothing of her art.\"\n\nHe lowers his voice to a theatrical whisper.\n\n\"Between us, she confided certain... concerns. About their \nfinances. About policies and documents she had discovered. \nI urged her to speak with the authorities, but she was \nfrightened of him.\"\n\n\"She said, 'Henrik, if anything happens to me, look to Erik.' \nI thought it mere artistic dramatics at the time...\"\n",
+        "clue_insurance": "\"Insurance fraud? Mon Dieu!\"\n\nThe Maestro sinks into a velvet seat, suddenly looking his age.\n\n\"It makes terrible sense now. The arguments. Her fear. The \nway he would come to rehearsals, watching her like a hawk \nwatches a mouse.\"\n\n\"She was planning to leave him, you know. She told me she had \nfound somewhere safe to go, somewhere he would never find her. \nPerhaps... perhaps she succeeded?\"\n"
+      }
+    },
+    {
+      "id": "erik_husband",
+      "name": "Erik Lindgren",
+      "role": "Import Merchant",
+      "locationId": "husband_office",
+      "description": "A man of perhaps forty years, with thinning hair and the soft \nhands of one who has never done physical labor. Erik Lindgren \nwears expensive clothes that hang poorly on his frame, as if \npurchased in more prosperous times. His smile never quite \nreaches his eyes.\n",
+      "initialDialogue": "\"Another investigator? The police have already questioned me \nthoroughly, I assure you.\"\n\nErik Lindgren rises from behind a desk cluttered with papers, \nhis handshake clammy and brief.\n\n\"My dear Maria was the light of my life. We had seventeen \nyears of perfect happiness together. Perfect.\"\n\nHis eyes dart to a framed photograph on his desk—a beautiful \nwoman with dark hair and intelligent eyes, holding a violin.\n\n\"I have offered a substantial reward for her return. Fifty \npounds! What more can a devoted husband do?\"\n\n\"The police believe she was abducted for ransom, but no \ndemands have come. It is... most distressing.\"\n",
+      "conditionalDialogue": {
+        "clue_insurance": "Erik's face goes pale, then flushes an ugly red.\n\n\"Where did you get that information? That is private! \nConfidential business!\"\n\nHe struggles to compose himself.\n\n\"The policy was... a prudent measure. My wife's hands were \nher livelihood. Any wise husband would insure against \naccident or illness. There is nothing sinister about it!\"\n\n\"I demand you leave my office immediately. I shall be \nspeaking with my solicitors about this harassment!\"\n",
+        "clue_park_witness": "\"ALIVE? That is preposterous! Who told you such lies?\"\n\nErik's composure shatters completely. He grips the edge of \nhis desk, knuckles white.\n\n\"The flower seller is mistaken. Confused. My wife vanished \nthree days ago—that is the official record! I have \nwitnesses who saw her enter that carriage and never emerge!\"\n\n\"You... you are trying to deny me my rightful compensation! \nThis is slander! I will see you ruined for this!\"\n\nHe is practically frothing now, all pretense of grief \nabandoned.\n",
+        "clue_argument": "\"Jan Kowalski is a foreign liar who should mind his own \nbusiness!\"\n\nErik slams his fist on the desk.\n\n\"My wife and I had... minor disagreements. What married \ncouple does not? But to suggest I would harm her is \noutrageous! I loved her!\"\n\n\"The debts are temporary setbacks. My shipping investments \nwill pay off any day now. Any day...\"\n\nHis voice trails off, and for a moment you see genuine \ndesperation in his eyes.\n"
+      }
+    },
+    {
+      "id": "anna_rival",
+      "name": "Anna Moravec",
+      "role": "Second Violinist",
+      "locationId": "rival_apartment",
+      "description": "A thin, nervous woman with ink-stained fingers and an \nunfortunate overbite. Anna Moravec lives in modest lodgings \nthat speak to a musician's uncertain income. She startles \neasily and wrings her hands constantly as she speaks.\n",
+      "initialDialogue": "\"You think I had something to do with Maria's disappearance? \nThat is absurd! Yes, we were rivals—of course we were rivals! \nShe had the first chair, and I had worked years longer!\"\n\nAnna paces her cramped sitting room, nearly tripping over \nstacks of sheet music.\n\n\"But jealousy is not murder! I am a musician, not a \ncriminal!\"\n\nShe pauses, clutching a handkerchief.\n\n\"I will admit, I was not... kind to her. I spread rumors \nabout her technique. Petty things. But I never wished \nher harm.\"\n\n\"If you want a suspect, look to that husband of hers. \nThe way he looked at her sometimes... like she was \nproperty to be sold.\"\n",
+      "conditionalDialogue": {
+        "clue_schedule": "\"Her schedule? Yes, I knew her routine. Everyone in the \norchestra did. She was insufferably predictable.\"\n\nAnna's lips twist in a bitter smile.\n\n\"Coffee at nine, practice from ten to one, rehearsal at \nthree. Like clockwork. The only variation was those \nmysterious walks in the park.\"\n\n\"She thought no one noticed, but I saw her once, meeting \na man near the old fountain. Not her husband—someone \nelse. A lawyer, perhaps? He carried a briefcase.\"\n",
+        "clue_park_witness": "\"ALIVE? Oh, thank heavens!\"\n\nAnna bursts into tears—genuine ones, it seems.\n\n\"I have not slept since she vanished. The guilt of my \njealousy was eating me alive! To think I might never \nhave apologized for my pettiness...\"\n\nShe blows her nose loudly.\n\n\"I always knew she was too clever to let that dreadful \nhusband of hers have the last word. If anyone could \nescape and start anew, it would be Maria.\"\n"
+      }
+    },
+    {
+      "id": "sergeant_morrison",
+      "name": "Sergeant William Morrison",
+      "role": "Police Sergeant",
+      "locationId": "police_station",
+      "description": "A heavyset man with impressive mutton-chop whiskers and the \nweathered face of one who has seen too much of human nature. \nSergeant Morrison moves with the deliberate pace of a veteran \nofficer who knows that rushing rarely helps.\n",
+      "initialDialogue": "\"The Lindgren case? Aye, a peculiar business indeed.\"\n\nThe Sergeant shuffles through papers on his cluttered desk.\n\n\"Woman vanishes after a society engagement, leaves behind \nher precious violin. No ransom note, no witnesses to any \nstruggle. The husband seems appropriately distraught.\"\n\nHe gives you a knowing look.\n\n\"Though between us, something about his story doesn't sit \nright. Too smooth, if you take my meaning. Rehearsed.\"\n\n\"Unfortunately, without evidence of foul play, there's \nlittle we can do officially. But if you were to find \nsomething... well, I'd be most interested to hear of it.\"\n",
+      "conditionalDialogue": {
+        "clue_argument": "\"An argument about money? Now that is interesting...\"\n\nThe Sergeant pulls out a fresh notebook.\n\n\"We had reports of Mr. Lindgren's financial difficulties \nsome months back. Unpaid bills, creditors making threats. \nHe claimed it was all sorted, but...\"\n\nHe taps his nose meaningfully.\n\n\"Men in debt do desperate things. I've seen it a hundred \ntimes. Let me check our records for anything on the \ninsurance angle.\"\n",
+        "clue_schedule": "\"A secret meeting place? The park, you say?\"\n\nSergeant Morrison heaves himself up from his chair.\n\n\"That would explain the flower seller's report. Old Mrs. \nChen, down by the fountain—she mentioned seeing a woman \nmatching Mrs. Lindgren's description, day after she \nsupposedly vanished.\"\n\n\"I dismissed it as fancy, but if she had a regular \nmeeting spot there... Worth another look, I'd say.\"\n"
+      }
+    }
+  ],
+  "clues": [
+    {
+      "id": "clue_schedule",
+      "type": "physical",
+      "locationId": "cafe_practice",
+      "title": "Maria's Practice Schedule",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ EVIDENCE DISCOVERED ❧\n════════════════════════════════════════════════════════════════════════════\n\nHidden beneath the sugar bowl at Maria's usual table, you discover \na folded piece of paper in feminine handwriting:\n\n    ╭─────────────────────────────────────────────────╮\n    │  IF YOU ARE READING THIS, SOMETHING HAS GONE    │\n    │  WRONG. FIND ME AT THE USUAL PLACE - BY THE     │\n    │  OLD FOUNTAIN IN THE PARK. COME ALONE.          │\n    │                                                 │\n    │  P.S. - Jan knows more than he has said.        │\n    │         Ask him about the argument.             │\n    │                                        - M.L.   │\n    ╰─────────────────────────────────────────────────╯\n\nThe paper is dated two days before Maria's disappearance.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Found a note from Maria hidden at the café, mentioning a meeting place by \"the old fountain in the park\" and urging to ask Jan about \"the argument.\"",
+      "prerequisites": [],
+      "reveals": ["park_meeting"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_argument",
+      "type": "testimony",
+      "locationId": "cafe_practice",
+      "characterId": "jan_barista",
+      "title": "Testimony: The Argument",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ TESTIMONY RECORDED ❧\n════════════════════════════════════════════════════════════════════════════\n\nJan Kowalski recounts a heated argument between Maria and Erik \nLindgren, witnessed three days before her disappearance:\n\nKEY POINTS:\n  • Erik was shouting about debts and financial troubles\n  • He mentioned \"the policy will solve everything\"\n  • He physically grabbed Maria's arm\n  • She was crying and asked \"what do you mean?\"\n\nThis testimony suggests Erik may have been planning something \nrelated to an insurance policy.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Jan witnessed Erik and Maria arguing about debts. Erik said \"the policy will solve everything\" and grabbed her arm roughly.",
+      "prerequisites": ["clue_schedule"],
+      "reveals": ["police_station"],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_insurance",
+      "type": "record",
+      "locationId": "police_station",
+      "characterId": "sergeant_morrison",
+      "title": "Insurance Policy Records",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ OFFICIAL RECORD ❧\n════════════════════════════════════════════════════════════════════════════\n\nSergeant Morrison produces a document from the records office:\n\n    ╭─────────────────────────────────────────────────╮\n    │     METROPOLITAN INSURANCE COMPANY              │\n    │     POLICY #4471-B                              │\n    │                                                 │\n    │     INSURED: Maria Lindgren                     │\n    │     BENEFICIARY: Erik Lindgren (husband)        │\n    │     COVERAGE: Death or Disappearance            │\n    │     AMOUNT: £5,000                              │\n    │     DATE ISSUED: 6 months prior                 │\n    │                                                 │\n    │     NOTE: Claim filed by beneficiary            │\n    │           on day of disappearance               │\n    ╰─────────────────────────────────────────────────╯\n\n\"Filing a claim on the same day,\" the Sergeant mutters. \n\"Most devoted husbands wait at least a week to give up hope.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Erik took out a £5,000 insurance policy on Maria six months ago and filed a claim on the SAME DAY she vanished. Highly suspicious.",
+      "prerequisites": ["clue_argument"],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_park_witness",
+      "type": "testimony",
+      "locationId": "park_meeting",
+      "title": "The Flower Seller's Account",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ WITNESS STATEMENT ❧\n════════════════════════════════════════════════════════════════════════════\n\nNear the old fountain, you encounter Mrs. Chen, an elderly flower \nseller who has occupied this spot for decades.\n\n\"The violin lady? Oh yes, I see her many times. Beautiful woman, \nalways kind to me. Buy flowers for her practice room.\"\n\nMrs. Chen's eyes light up with certainty.\n\n\"I see her YESTERDAY! Yes, yesterday morning, very early. She \ncome to fountain, meet a man in a dark coat. They talk quiet, \nthen she give him envelope. He give her papers.\"\n\n\"She look... relieved. Happy even. Then she walk away toward \nthe train station. Carrying a small bag.\"\n\nMrs. Chen frowns. \"But newspapers say she vanish three days \nago. I know what I see. Yesterday. She is alive.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Mrs. Chen, the flower seller, SAW MARIA ALIVE yesterday morning at the park fountain! She met a man, exchanged papers, then walked toward the train station. Maria ESCAPED.",
+      "prerequisites": ["clue_schedule"],
+      "reveals": [],
+      "isEssential": true,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_rival_rumor",
+      "type": "testimony",
+      "locationId": "rival_apartment",
+      "characterId": "anna_rival",
+      "title": "The Rival's Jealousy",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ DUBIOUS TESTIMONY ❧\n════════════════════════════════════════════════════════════════════════════\n\nAnna Moravec, second violin at the orchestra, speaks at length \nabout her rivalry with Maria Lindgren.\n\n\"She stole my position! I had seniority—years of seniority! \nBut the Maestro only had eyes for her 'superior technique.'\"\n\nAnna produces old concert programs, letters of complaint she \nwrote to the orchestra board, even a list of \"Maria's flaws.\"\n\n\"I documented everything. Her missed notes, her temperamental \noutbursts, her... her...\" Anna dissolves into bitter tears.\n\nWhile clearly consumed by professional jealousy, Anna seems \ngenuinely shocked by Maria's disappearance and bears no signs \nof involvement beyond petty envy.\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Anna Moravec was jealous of Maria, but her rivalry appears purely professional. She seems genuinely relieved to hear Maria may be alive.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": true
+    },
+    {
+      "id": "clue_conductor_fear",
+      "type": "testimony",
+      "locationId": "orchestra_hall",
+      "characterId": "henrik_conductor",
+      "title": "The Maestro's Confidence",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ PRIVATE CONVERSATION ❧\n════════════════════════════════════════════════════════════════════════════\n\nMaestro Henrik Berg shares a confidential exchange he had with \nMaria Lindgren during a recent rehearsal:\n\n\"She came to me in tears one evening, after the others had left. \nShe said, 'Henrik, I have discovered something terrible about \nErik. Something that puts my life in danger.'\"\n\nThe Maestro steeples his fingers.\n\n\"I urged her to go to the police, but she was afraid they would \nnot believe her. She said she had a plan—a way to escape and \nstart fresh somewhere he could never find her.\"\n\n\"I gave her the name of a solicitor I trust, a man who specializes \nin helping women flee dangerous domestic situations. Perhaps \nthat is who the flower seller saw her meeting.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Maestro Berg confirms Maria feared for her life and was planning an escape. He connected her with a solicitor who helps women flee dangerous husbands.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    },
+    {
+      "id": "clue_pawn_ticket",
+      "type": "physical",
+      "locationId": "antique_shop",
+      "title": "The Pawn Ticket",
+      "discoveryText": "════════════════════════════════════════════════════════════════════════════\n                        ❧ CURIOUS DISCOVERY ❧\n════════════════════════════════════════════════════════════════════════════\n\nThe proprietor of the antique shop, a wizened man with spectacles \nthick as bottle-bottoms, peers at you over a display of pocket \nwatches.\n\n\"Erik Lindgren? Oh yes, he was here. Not a week past.\"\n\nHe produces a ledger, running a gnarled finger down the entries.\n\n\"Sold me his wife's jewelry. Said she had given permission to \nliquidate some assets for their 'investments.' A pearl necklace, \ngold earrings, a diamond brooch.\"\n\nHe shakes his head sadly.\n\n\"I gave him a fair price—perhaps too fair. Fifty pounds for \nthe lot. He seemed... desperate. Kept looking over his shoulder \nas if afraid someone would see him.\"\n\n════════════════════════════════════════════════════════════════════════════\n",
+      "notebookSummary": "Erik sold Maria's jewelry at the antique shop for £50 just before she vanished. Further evidence of his financial desperation.",
+      "prerequisites": [],
+      "reveals": [],
+      "isEssential": false,
+      "isRedHerring": false
+    }
+  ],
+  "solution": {
+    "perpetratorId": "erik_husband",
+    "motive": "INSURANCE FRAUD & FINANCIAL DESPERATION\n\nErik Lindgren, drowning in debt from failed shipping investments, \ntook out a £5,000 life insurance policy on his wife six months \nbefore her \"disappearance.\" He planned to stage her death and \ncollect the substantial payout.\n\nHowever, Maria discovered his scheme and, with the help of a \nsolicitor recommended by Maestro Berg, orchestrated her own \nescape. She is alive and has fled to safety, leaving behind \nevidence to expose her husband's fraud.\n",
+    "method": "Erik planned to stage Maria's disappearance after her performance \nat Lord Ashworth's residence, making it appear as an abduction. \nHe left her violin in the carriage to suggest foul play.\n\nMaria, however, had anticipated his move. She slipped away on \nher own terms, meeting with her solicitor to finalize travel \ndocuments before boarding a train to parts unknown.\n",
+    "keyEvidence": [
+      "clue_insurance",
+      "clue_park_witness",
+      "clue_argument"
+    ],
+    "optimalPath": [
+      "cafe_practice",
+      "park_meeting",
+      "police_station",
+      "husband_office"
+    ]
+  }
+}

@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../data/cases/vanishing_violinist.dart';
 import '../models/bound_case.dart';
 import '../models/case_template.dart';
 import '../models/poi.dart';
@@ -61,6 +60,9 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
   // Demo mode for web testing
   bool _isDemoMode = false;
 
+  // Loaded case template
+  CaseTemplate? _caseTemplate;
+
   // Fixed demo location (Central Örebro for testing)
   static const _demoLocation = LatLng(59.275848, 15.2166516);
 
@@ -71,12 +73,6 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
     Future.microtask(_startSetup);
   }
 
-  CaseTemplate get _caseTemplate {
-    // For MVP, we only have one case
-    // In the future, look up by widget.caseId
-    return vanishingViolinistCase;
-  }
-
   Future<void> _startSetup() async {
     setState(() {
       _phase = SetupPhase.requestingLocation;
@@ -85,6 +81,9 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
     });
 
     try {
+      // Load the case template first
+      final caseLoader = ref.read(caseLoaderServiceProvider);
+      _caseTemplate = await caseLoader.loadCase(widget.caseId);
       // Step 1: Request location permission
       final locationState = await _requestLocationPermission();
       if (!mounted) return;
@@ -297,7 +296,7 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
     final bindingService = ref.read(bindingServiceProvider);
 
     final result = bindingService.bindCase(
-      _caseTemplate,
+      _caseTemplate!,
       pois,
       position,
     );
@@ -409,7 +408,7 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
     return Column(
       children: [
         Text(
-          _caseTemplate.title.toUpperCase(),
+          _caseTemplate!.title.toUpperCase(),
           style: GoogleFonts.playfairDisplay(
             fontSize: 20,
             fontWeight: FontWeight.w700,
@@ -420,7 +419,7 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
         ),
         const SizedBox(height: 4),
         Text(
-          _caseTemplate.subtitle,
+          _caseTemplate!.subtitle,
           style: GoogleFonts.oldStandardTt(
             fontSize: 14,
             fontStyle: FontStyle.italic,
@@ -666,7 +665,7 @@ class _CaseSetupScreenState extends ConsumerState<CaseSetupScreen> {
           const SizedBox(height: 8),
           _buildSummaryRow(
             'Required Locations Bound',
-            '${_boundCase?.boundLocations.values.where((l) => _caseTemplate.locations[l.templateId]?.required ?? false).length ?? 0}',
+            '${_boundCase?.boundLocations.values.where((l) => _caseTemplate!.locations[l.templateId]?.required ?? false).length ?? 0}',
             textColor,
             subtitleColor,
           ),

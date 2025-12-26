@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../data/cases/vanishing_violinist.dart';
 import '../models/case_template.dart';
+import '../providers/case_provider.dart';
 import '../providers/theme_provider.dart';
 import '../theme/gazette_colors.dart';
 import '../widgets/case/case_card.dart';
@@ -71,7 +71,7 @@ class HomeScreen extends ConsumerWidget {
                     const SizedBox(height: 20),
 
                     // Case cards
-                    _buildCaseList(context),
+                    _buildCaseList(context, ref),
                     const SizedBox(height: 32),
 
                     // Footer
@@ -232,24 +232,30 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildCaseList(BuildContext context) {
-    // For MVP, we only have one case, but this is designed to
-    // easily support multiple cases in the future
-    final cases = <CaseTemplate>[
-      vanishingViolinistCase,
-    ];
+  Widget _buildCaseList(BuildContext context, WidgetRef ref) {
+    final casesAsync = ref.watch(allCasesProvider);
 
-    return Column(
-      children: cases.map((caseTemplate) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: CaseCard(
-            caseTemplate: caseTemplate,
-            teaser: _getCaseTeaser(caseTemplate.id),
-            onTap: () => _showCaseDetails(context, caseTemplate),
-          ),
-        );
-      }).toList(),
+    return casesAsync.when(
+      data: (cases) => Column(
+        children: cases.map((caseTemplate) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: CaseCard(
+              caseTemplate: caseTemplate,
+              teaser: _getCaseTeaser(caseTemplate.id),
+              onTap: () => _showCaseDetails(context, caseTemplate),
+            ),
+          );
+        }).toList(),
+      ),
+      loading: () => const Padding(
+        padding: EdgeInsets.all(32),
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      error: (error, stack) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text('Error loading cases: $error'),
+      ),
     );
   }
 

@@ -5,7 +5,30 @@ import '../models/case_template.dart';
 import '../models/poi.dart';
 import '../models/story_role.dart';
 import '../services/binding_service.dart';
+import '../services/case_loader_service.dart';
 import 'poi_provider.dart';
+
+/// Provider for the CaseLoaderService singleton.
+final caseLoaderServiceProvider = Provider<CaseLoaderService>((ref) {
+  return CaseLoaderService();
+});
+
+/// Provider for loading all available cases.
+///
+/// Returns a Future that resolves to the list of all case templates.
+final allCasesProvider = FutureProvider<List<CaseTemplate>>((ref) async {
+  final loader = ref.watch(caseLoaderServiceProvider);
+  return loader.loadAllCases();
+});
+
+/// Provider for loading a single case by ID.
+///
+/// Usage: ref.watch(caseByIdProvider('vanishing_violinist'))
+final caseByIdProvider =
+    FutureProvider.family<CaseTemplate, String>((ref, caseId) async {
+  final loader = ref.watch(caseLoaderServiceProvider);
+  return loader.loadCase(caseId);
+});
 
 /// Provider for the Binding service singleton.
 final bindingServiceProvider = Provider<BindingService>((ref) {

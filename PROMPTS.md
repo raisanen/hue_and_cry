@@ -747,41 +747,32 @@ Review and polish the complete app for both Android and Web:
    Android:
    - Test GPS accuracy and updates
    - Handle app backgrounding gracefully
-   - Test on various screen sizes
    
    Web:
    - Ensure responsive layout for desktop browsers
    - Handle browser geolocation limitations gracefully
-   - Test keyboard navigation
-   - Consider touch vs mouse interactions
-   - Test on Chrome, Firefox, Safari
 
-6. Accessibility:
-   - Semantic labels on all interactive elements
-   - Sufficient color contrast (important with sepia palette!)
-   - Screen reader support for key flows
-   - Test with TalkBack (Android) and screen readers (web)
-
-7. Performance:
+6. Performance:
    - Don't re-fetch POIs unnecessarily
    - Efficient marker rendering on map
    - Throttle location updates appropriately
    - Optimize font loading (especially for web)
 
-8. Final testing checklist:
-   - Fresh install flow (Android)
-   - First visit flow (Web)
-   - Complete case playthrough on both platforms
+7. Final testing checklist:
    - Interrupted game resume
    - Permission denied scenarios
    - No internet scenario
    - Walking simulation (for indoor testing)
 
-9. Web-specific considerations:
+8. Web-specific considerations:
    - Add manifest.json for PWA support
    - Appropriate favicon with gazette aesthetic
    - Meta tags for social sharing
    - Loading splash screen
+
+9. Testing:
+   - Make sure all services, providers, & utils have unit tests
+   - Run all tests
 ```
 
 ---
