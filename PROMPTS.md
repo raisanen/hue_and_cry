@@ -454,7 +454,7 @@ The whole screen should feel like opening a 19th century crime gazette.
 
 ---
 
-## Prompt 12: Case Setup Screen
+## Prompt 12: Case Setup Screen -- DONE
 
 ```
 Create the case setup screen in lib/screens/case_setup_screen.dart:
