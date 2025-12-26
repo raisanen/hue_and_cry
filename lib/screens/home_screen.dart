@@ -242,7 +242,7 @@ class HomeScreen extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 16),
             child: CaseCard(
               caseTemplate: caseTemplate,
-              teaser: _getCaseTeaser(caseTemplate.id),
+              teaser: caseTemplate.teaser,
               onTap: () => _showCaseDetails(context, caseTemplate),
             ),
           );
@@ -267,21 +267,6 @@ class HomeScreen extends ConsumerWidget {
         context.push('/case/${caseTemplate.id}/setup');
       },
     );
-  }
-
-  String _getCaseTeaser(String caseId) {
-    // Teaser text for each case in newspaper prose style
-    const teasers = {
-      'vanishing_violinist':
-          'Three days past, the acclaimed violinist Maria Lindgren departed '
-              'a private engagement and has not been seen since. Her prized '
-              'Stradivarius was discovered abandoned in her carriage—an '
-              'instrument she was known never to let leave her sight. The '
-              'circumstances demand investigation.',
-    };
-
-    return teasers[caseId] ??
-        'A mystery of considerable intrigue awaits the discerning investigator.';
   }
 
   Widget _buildFooter(

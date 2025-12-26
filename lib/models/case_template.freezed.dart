@@ -30,6 +30,9 @@ mixin _$CaseTemplate {
   /// Subtitle/tagline for the case
   String get subtitle => throw _privateConstructorUsedError;
 
+  /// Short teaser text for the case listing (newspaper prose style)
+  String get teaser => throw _privateConstructorUsedError;
+
   /// Opening briefing text presented to the player
   String get briefing => throw _privateConstructorUsedError;
 
@@ -76,6 +79,7 @@ abstract class $CaseTemplateCopyWith<$Res> {
     String id,
     String title,
     String subtitle,
+    String teaser,
     String briefing,
     Map<String, LocationRequirement> locations,
     List<Character> characters,
@@ -107,6 +111,7 @@ class _$CaseTemplateCopyWithImpl<$Res, $Val extends CaseTemplate>
     Object? id = null,
     Object? title = null,
     Object? subtitle = null,
+    Object? teaser = null,
     Object? briefing = null,
     Object? locations = null,
     Object? characters = null,
@@ -129,6 +134,10 @@ class _$CaseTemplateCopyWithImpl<$Res, $Val extends CaseTemplate>
             subtitle: null == subtitle
                 ? _value.subtitle
                 : subtitle // ignore: cast_nullable_to_non_nullable
+                      as String,
+            teaser: null == teaser
+                ? _value.teaser
+                : teaser // ignore: cast_nullable_to_non_nullable
                       as String,
             briefing: null == briefing
                 ? _value.briefing
@@ -191,6 +200,7 @@ abstract class _$$CaseTemplateImplCopyWith<$Res>
     String id,
     String title,
     String subtitle,
+    String teaser,
     String briefing,
     Map<String, LocationRequirement> locations,
     List<Character> characters,
@@ -222,6 +232,7 @@ class __$$CaseTemplateImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? subtitle = null,
+    Object? teaser = null,
     Object? briefing = null,
     Object? locations = null,
     Object? characters = null,
@@ -244,6 +255,10 @@ class __$$CaseTemplateImplCopyWithImpl<$Res>
         subtitle: null == subtitle
             ? _value.subtitle
             : subtitle // ignore: cast_nullable_to_non_nullable
+                  as String,
+        teaser: null == teaser
+            ? _value.teaser
+            : teaser // ignore: cast_nullable_to_non_nullable
                   as String,
         briefing: null == briefing
             ? _value.briefing
@@ -289,6 +304,7 @@ class _$CaseTemplateImpl implements _CaseTemplate {
     required this.id,
     required this.title,
     required this.subtitle,
+    required this.teaser,
     required this.briefing,
     final Map<String, LocationRequirement> locations = const {},
     final List<Character> characters = const [],
@@ -315,6 +331,10 @@ class _$CaseTemplateImpl implements _CaseTemplate {
   /// Subtitle/tagline for the case
   @override
   final String subtitle;
+
+  /// Short teaser text for the case listing (newspaper prose style)
+  @override
+  final String teaser;
 
   /// Opening briefing text presented to the player
   @override
@@ -377,7 +397,7 @@ class _$CaseTemplateImpl implements _CaseTemplate {
 
   @override
   String toString() {
-    return 'CaseTemplate(id: $id, title: $title, subtitle: $subtitle, briefing: $briefing, locations: $locations, characters: $characters, clues: $clues, solution: $solution, parVisits: $parVisits, estimatedMinutes: $estimatedMinutes, difficulty: $difficulty)';
+    return 'CaseTemplate(id: $id, title: $title, subtitle: $subtitle, teaser: $teaser, briefing: $briefing, locations: $locations, characters: $characters, clues: $clues, solution: $solution, parVisits: $parVisits, estimatedMinutes: $estimatedMinutes, difficulty: $difficulty)';
   }
 
   @override
@@ -389,6 +409,7 @@ class _$CaseTemplateImpl implements _CaseTemplate {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
+            (identical(other.teaser, teaser) || other.teaser == teaser) &&
             (identical(other.briefing, briefing) ||
                 other.briefing == briefing) &&
             const DeepCollectionEquality().equals(
@@ -417,6 +438,7 @@ class _$CaseTemplateImpl implements _CaseTemplate {
     id,
     title,
     subtitle,
+    teaser,
     briefing,
     const DeepCollectionEquality().hash(_locations),
     const DeepCollectionEquality().hash(_characters),
@@ -446,6 +468,7 @@ abstract class _CaseTemplate implements CaseTemplate {
     required final String id,
     required final String title,
     required final String subtitle,
+    required final String teaser,
     required final String briefing,
     final Map<String, LocationRequirement> locations,
     final List<Character> characters,
@@ -470,6 +493,10 @@ abstract class _CaseTemplate implements CaseTemplate {
   /// Subtitle/tagline for the case
   @override
   String get subtitle;
+
+  /// Short teaser text for the case listing (newspaper prose style)
+  @override
+  String get teaser;
 
   /// Opening briefing text presented to the player
   @override

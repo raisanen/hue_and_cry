@@ -11,6 +11,7 @@ _$CaseTemplateImpl _$$CaseTemplateImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
+      teaser: json['teaser'] as String,
       briefing: json['briefing'] as String,
       locations:
           (json['locations'] as Map<String, dynamic>?)?.map(
@@ -41,6 +42,7 @@ Map<String, dynamic> _$$CaseTemplateImplToJson(_$CaseTemplateImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,
+      'teaser': instance.teaser,
       'briefing': instance.briefing,
       'locations': instance.locations,
       'characters': instance.characters,

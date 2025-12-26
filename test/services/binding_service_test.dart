@@ -46,6 +46,7 @@ void main() {
       id: id,
       title: 'Test Case',
       subtitle: 'A test mystery',
+      teaser: 'A test mystery teaser.',
       briefing: 'Test briefing',
       locations: locations ?? {},
       characters: [],

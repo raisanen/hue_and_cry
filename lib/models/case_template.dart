@@ -25,6 +25,9 @@ class CaseTemplate with _$CaseTemplate {
     /// Subtitle/tagline for the case
     required String subtitle,
 
+    /// Short teaser text for the case listing (newspaper prose style)
+    required String teaser,
+
     /// Opening briefing text presented to the player
     required String briefing,
 

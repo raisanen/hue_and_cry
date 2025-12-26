@@ -28,6 +28,7 @@ void main() {
       id: 'test_case',
       title: 'Test Case',
       subtitle: 'A Test Mystery',
+      teaser: 'A test mystery teaser.',
       briefing: 'Solve the test mystery.',
       locations: {
         'cafe': const LocationRequirement(
